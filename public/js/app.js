@@ -60,10 +60,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('rsvp', {
       url: '/rsvp',
       templateUrl: '../states/rsvp.html',
-      views: {
-      '': { templateUrl: '/states/rsvp.html' },
-      'guestbook@rsvp': { templateUrl: '/states/partials/guestbook.html' },
-    }
       resolve: {
         currentAuth: [
           'AuthFactory',
