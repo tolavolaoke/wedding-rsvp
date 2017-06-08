@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+    <input type="text" placeholder="first name" ng-model="firstName"><br>
+    <input type="text" placeholder="surname" ng-model="surname"><br>
+
+
+  <select class="form-control" id="selectNumberOfGuests" placeholder="Enter Date" ng-model="event.extraGuests">
+   <option value="" disabled selected hidden>Please Choose...</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+  </select>
+
+  <select class="form-control" id="selectEvent" placeholder="Enter Event" ng-model="event.eventSelection">
+   <option value="" disabled selected hidden>Please Choose...</option>
+      <option value="Both">Both</option>
+      <option value="White Wedding">White Wedding</option>
+      <option value="Traditional Wedding">Traditional Wedding</option>
+  </select>
+
+<p>Want to add a comment?</p>
+
+<div class="form-group">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="5" id="comment" ng-model="event.comment"></textarea>
+</div>
+
+<input type="submit" value="Submit" ng-click="confirmation">
+
+<h1>Testing</h1>
+{{firstName}}
+{{surname}}
+{{event.extraGuests}}
+{{event.eventSelection}}
+{{event.comment}}
