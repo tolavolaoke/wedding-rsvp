@@ -14,10 +14,10 @@ function GuestController(GuestFactory) {
 
   function init() {
     console.log(controller, 'guestController');
+    controller.extraGuestsOptions = [0, 1 , 2];
     controller.newGuest = {};
     console.log(controller.newGuest);
   }
-
   init();
 }
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const GuestSchema = ({
   firstName: {
@@ -8,8 +9,15 @@ const GuestSchema = ({
   lastName: {
     type: String,
     required: [true, 'Last name field is required']
+  },
+  extraGuests: {
+    type: Number,
+    required: [true, 'This field is required']
+  },
+  attendingEvents: {
+    type: Schema.Types.ObjectId,
+    required: true
   }
-//Add in other properties maybe include a default parameter
 });
 
 module.exports = mongoose.model('wedding-project', GuestSchema);

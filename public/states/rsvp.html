@@ -6,8 +6,37 @@
 
 <input type = "text" placeholder="Enter first name" ng-model="guests.newGuest.firstName" required/>
 <input type = "text" placeholder="Enter last name" ng-model="guests.newGuest.lastName" required/>
+<br>
+<label>Extra Guests:</label><select ng-model="guests.newGuest.extraGuests">
+  <option ng-repeat="option in guests.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
+</select>
+<br>
+<label>Attending:</label>
+<br>
+<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="1">Traditional Wedding
+<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="2">White Wedding
+<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="3">Both
 
-<input type="submit" value="submit" ng-disabled="guestRSVPForm.$invalid">
+
+<div ng-switch="guest.newGuest.attendingEvents">
+<div ng-switch-when="1">
+   <h1>Traditonal Wedding</h1>
+   <p>Date: 99/99/00 </p>
+   <p>Address:</p>
+</div>
+<div ng-switch-when="2">
+  <h1>White Wedding</h1>
+  <p>Date: 99/99/00 </p>
+  <p>Address:</p>
+</div>
+<div ng-switch-when="3">
+  <h1>Both</h1>
+  <p>Date: 99/99/00 </p>
+  <p>Address:</p>
+</div>
+</div>
+
+<input type="submit" value="submit" >
 </form>
 
 
