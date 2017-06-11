@@ -15,8 +15,12 @@ const GuestSchema = ({
     required: [true, 'This field is required']
   },
   attendingEvents: {
-    type: Schema.Types.ObjectId,
-    required: true
+    type: String,
+    required: [true, 'This field is required']
+  },
+  comments: {
+    type: String,
+    required: false
   }
 });
 

@@ -1,4 +1,4 @@
-<h1>Add Guest</h1>
+<h1>RSVP</h1>
 <div ng-controller = "GuestController as guests">
 
 <form name="guestRSVPForm" ng-submit="guests.AddGuest()">
@@ -13,12 +13,12 @@
 <br>
 <label>Attending:</label>
 <br>
-<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="1">Traditional Wedding
-<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="2">White Wedding
-<input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="3">Both
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="1">Traditional Wedding
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="2">White Wedding
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="3">Both
 
 
-<div ng-switch="guest.newGuest.attendingEvents">
+<div ng-switch="guests.newGuest.attendingEvents">
 <div ng-switch-when="1">
    <h1>Traditonal Wedding</h1>
    <p>Date: 99/99/00 </p>
@@ -35,7 +35,17 @@
   <p>Address:</p>
 </div>
 </div>
+<!--condense all the event info into angular for instance if we make an event controller-->
+<!--Get rid of all of the BR tags and structure properly-->
 
+<br>
+<textarea type = "text"
+       placeholder="Enter your comments here"
+       ng-model="guests.newGuest.comments"
+       id="RSVP_comment_box" required>
+</textarea>
+
+<br>
 <input type="submit" value="submit" >
 </form>
 
