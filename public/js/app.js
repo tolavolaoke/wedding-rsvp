@@ -13,8 +13,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
 }
-
 MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 
-angular.module('wedding-rsvp', ['ui.router'])
+angular
+  .module('wedding-rsvp', ['ui.router'])
   .config(MainRouter);
