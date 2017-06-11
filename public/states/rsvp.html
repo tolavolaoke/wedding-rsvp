@@ -1,11 +1,14 @@
 <h1>Add Guest</h1>
 <div ng-controller = "GuestController as guests">
 
-<form name="guestRSVPForm" ng-submit="guests.AddGuest();">
+<form name="guestRSVPForm" ng-submit="guests.AddGuest()">
 
-<input type = "text" placeholder="Enter first name" ng-model="guest.firstName" required/>
-<input type = "text" placeholder="Enter last name" ng-model="guest.lastName" required/>
+
+<input type = "text" placeholder="Enter first name" ng-model="guests.newGuest.firstName" required/>
+<input type = "text" placeholder="Enter last name" ng-model="guests.newGuest.lastName" required/>
 
 <input type="submit" value="submit" ng-disabled="guestRSVPForm.$invalid">
 </form>
+
+
 </div>

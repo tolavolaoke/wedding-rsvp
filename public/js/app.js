@@ -5,8 +5,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: '/',
       templateUrl: '../states/home.html'
     })
-    .state('rsvp', {
-      url: '/rsvp',
+    .state('guests', {
+      url: '/guests',
       templateUrl: '../states/rsvp.html'
     });
 

@@ -2,9 +2,25 @@ function GuestController(GuestFactory) {
   var controller = this;
 
   controller.AddGuest = function() {
-    GuestFactory.createGuest(controller.newGuest);
+    GuestFactory.createGuest(controller.newGuest).then(
+            function sucess(response) {
+              console.log('Created new Guest:', response);
+            },
+            function error(error) {
+              console.warn('Error creating Guest:', error);
+            }
+          );
   };
+
+  function init() {
+    console.log(controller, 'guestController');
+    controller.newGuest = {};
+    console.log(controller.newGuest);
+  }
+
+  init();
 }
+
 
 
 angular
