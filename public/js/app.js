@@ -21,9 +21,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('ourstory', {
-      url: '/ourstory',
-      templateUrl: '../states/ourstory.html',
+    .state('our-story', {
+      url: '/our-story',
+      templateUrl: '../states/our-story.html',
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -45,9 +45,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('weddingdetails', {
-      url: '/weddingdetails',
-      templateUrl: '../states/weddingdetails.html',
+    .state('wedding-details', {
+      url: '/wedding-details',
+      templateUrl: '../states/wedding-details.html',
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -69,9 +69,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('contactus', {
-      url: '/contactus',
-      templateUrl: '../states/contactus.html',
+    .state('contact-us', {
+      url: '/contact-us',
+      templateUrl: '../states/contact-us.html',
       resolve: {
         currentAuth: [
           'AuthFactory',
