@@ -1,13 +1,11 @@
 var Guest = require('../models/guest.model');
 
 function createGuest(req, res) {
-  var guest = new Guest(req.body);
-  console.log(guest);
-  guest.save(function(err) {
+  Guest.create(req.body, function(err) {
     if (err) {
       return res.json(err);
     } else {
-      return res.json({ guest: guest});
+      return res.status(200).json({Guest});
     }
   });
 

@@ -3,8 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./api/config/router');
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/wedding-project';
-var PORT = process.env.port || 3000;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/wedding-project';
+const PORT = process.env.port || 3000;
 
 mongoose.connect(MONGODB_URI, function (err) {
   if (err) {

@@ -24,4 +24,5 @@ const GuestSchema = ({
   }
 });
 
-module.exports = mongoose.model('wedding-project', GuestSchema);
+const weddingGuests = mongoose.model('Guests', GuestSchema);
+module.exports = weddingGuests;
