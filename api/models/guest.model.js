@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GuestSchema = ({
+const GuestSchema = Schema({
   firstName: {
     type: String,
     required: [true, 'First name field is required']
@@ -24,5 +24,5 @@ const GuestSchema = ({
   }
 });
 
-const weddingGuests = mongoose.model('Guests', GuestSchema);
+const weddingGuests = mongoose.model('Guest', GuestSchema);
 module.exports = weddingGuests;

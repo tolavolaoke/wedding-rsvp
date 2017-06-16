@@ -15,12 +15,12 @@ function GuestController(GuestFactory) {
   function init() {
     console.log(controller, 'guestController');
     controller.extraGuestsOptions = [0, 1 , 2];
+    controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     console.log(controller.newGuest);
   }
   init();
 }
-
 
 
 angular
