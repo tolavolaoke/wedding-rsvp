@@ -1,0 +1,58 @@
+<h1>RSVP</h1>
+<div ng-controller="GuestController as guests">
+
+<form name="guestRSVPForm" ng-submit="guests.AddGuest()">
+
+<!--names-->
+<input type = "text" placeholder="Enter first name" ng-model="guests.newGuest.firstName" required/>
+<input type = "text" placeholder="Enter last name" ng-model="guests.newGuest.lastName" required/>
+
+
+<!--guests-->
+<br>
+<label>Extra Guests:</label><select ng-model="guests.newGuest.extraGuests">
+  <option ng-repeat="option in guests.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
+</select>
+
+<!--events-->
+<br>
+<label>Attending:</label>
+<br>
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="1">Traditional Wedding
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="2">White Wedding
+<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="3">Both
+
+  <div ng-switch="guests.newGuest.attendingEvents">
+  <div ng-switch-when="1">
+     <h1>Traditonal Wedding</h1>
+     <p>Date: 99/99/00 </p>
+     <p>Address:</p>
+  </div>
+  <div ng-switch-when="2">
+    <h1>White Wedding</h1>
+    <p>Date: 99/99/00 </p>
+    <p>Address:</p>
+  </div>
+  <div ng-switch-when="3">
+    <h1>Both</h1>
+    <p>Date: 99/99/00 </p>
+    <p>Address:</p>
+  </div>
+  </div>
+
+<!--comment-->
+<br>
+<textarea type = "text"
+          placeholder="Enter your comments here"
+          ng-model="guests.newGuest.comments"
+          id="RSVP_comment_box" required>
+</textarea>
+
+<br>
+<input type="submit" value="submit" >
+</form>
+
+</div>
+
+<!--condense all the event info into angular for instance if we make an event controller-->
+<!--Get rid of all of the BR tags and structure properly-->

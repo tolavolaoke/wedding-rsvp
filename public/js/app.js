@@ -5,6 +5,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: '../states/login.html'
     })
+    .state('home', {
+      url: '/home',
+      templateUrl: '../states/home.html'
+    })
     .state('auth-required', {
       url: '/authrequired',
       templateUrl: '../states/auth-required.html'
@@ -82,7 +86,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise('/login')
+  $urlRouterProvider.otherwise('/login');
 
 }
 
