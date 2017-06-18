@@ -7,14 +7,27 @@ function GuestFactory ($http) {
         data: newGuest
       });
     },
-    getSingleUser: function(uid) {
+  //   getSingleUser: function(uid) {
+  //     return $http({
+  //       method: 'GET',
+  //       url: `/guests/${uid}`,
+  //       data: uid
+  //     });
+  //   }
+  // };
+    getAll: function(adminUid) {
       return $http({
         method: 'GET',
-        url: `/guests/${uid}`,
-        data: uid
+        url: `/guestbook/${adminUid}`,
+        data: adminUid
       });
     }
   };
+
+
+
+
+
 }
 
 

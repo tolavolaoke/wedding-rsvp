@@ -3,7 +3,8 @@ var router = express.Router();
 var guestController = require('../controllers/guest.controller');
 
 router.post('/guests', guestController.createGuest);
+router.get('/guestbook/:adminUid', guestController.getAll);
 
-router.get('/guests/:uid', guestController.getSingleUser);
+// router.get('/guests/:uid', guestController.getSingleUser);
 
 module.exports = router;

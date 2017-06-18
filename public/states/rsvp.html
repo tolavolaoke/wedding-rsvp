@@ -1,28 +1,31 @@
-<h1>RSVP</h1>
-<div ng-controller="GuestController as guests">
+<div ui-view="navbar"></div>
 
-<form name="guestRSVPForm" ng-submit="guests.AddGuest()">
+<h1>RSVP</h1>
+<div ng-controller = "GuestController as guest">
+
+<form name="guestRSVPForm" ng-submit="guest.AddGuest()">
 
 <!--names-->
-<input type = "text" placeholder="Enter first name" ng-model="guests.newGuest.firstName" required/>
-<input type = "text" placeholder="Enter last name" ng-model="guests.newGuest.lastName" required/>
+<input type = "text" placeholder="Enter first name" ng-model="guest.newGuest.firstName" required/>
+<input type = "text" placeholder="Enter last name" ng-model="guest.newGuest.lastName" required/>
 
 
-<!--guests-->
+<!--guest-->
 <br>
-<label>Extra Guests:</label><select ng-model="guests.newGuest.extraGuests">
-  <option ng-repeat="option in guests.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
+<label>Extra Guests:</label>
+<select ng-model="guest.newGuest.extraGuests">
+  <option ng-repeat="option in guest.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
 </select>
 
 <!--events-->
 <br>
 <label>Attending:</label>
 <br>
-<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="1">Traditional Wedding
-<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="2">White Wedding
-<input type="radio" ng-model="guests.newGuest.attendingEvents" ng-value="3">Both
+<div ng-repeat="event in guest.eventOptions">
+  <input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="event">{{ event }}
+</div>
 
-  <div ng-switch="guests.newGuest.attendingEvents">
+  <div ng-switch="guest.newGuest.attendingEvents">
   <div ng-switch-when="1">
      <h1>Traditonal Wedding</h1>
      <p>Date: 99/99/00 </p>
@@ -44,7 +47,7 @@
 <br>
 <textarea type = "text"
           placeholder="Enter your comments here"
-          ng-model="guests.newGuest.comments"
+          ng-model="guest.newGuest.comments"
           id="RSVP_comment_box" required>
 </textarea>
 
