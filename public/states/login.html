@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 
-<div class="navbar" ng-if="auth.user" ui-view="navbar"></div>
+<div ng-if="auth.user" ui-view="navbar"></div>
 
 <h2>Sign in</h2>
 
 <section class="login" ng-if="!auth.user">
-  <div>
-    Email: <input type="text" ng-model="auth.email">
+  <div class="email">
+    <input type="text" placeholder="email" ng-model="auth.email">
   </div>
 
-  <div>
-    Password: <input type="password" ng-model="auth.password">
+  <div class="password">
+    <input type="password" placeholder="password" ng-model="auth.password">
   </div>
 
-  <button ng-click="auth.signIn()">Sign In</button>
+  <button class="signinbtn" ng-click="auth.signIn()">Sign In</button>
 
   <p ng-if="auth.error">
-    Error: <strong>{{ auth.error }}</strong>
+    <strong>{{ auth.error }}</strong>
   </p>
 </section>
 
