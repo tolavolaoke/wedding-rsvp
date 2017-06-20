@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
+*{
+  font-family: 'Open Sans', sans-serif;
+}
 
+.navbar {
+  text-align: center;
+}
+
+p {
+
+}
 
 
 #RSVP_comment_box {
