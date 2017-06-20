@@ -89,6 +89,23 @@ input[type=password]:focus{
   background-color: darkorange;
 }
 
+.nav{
+  border: 2px solid gold;
+  background-color: gold;
+  padding: 20px;
+}
+
+.nav a{
+  text-decoration: none;
+  color: white;
+  padding: 30px;
+}
+
+.nav a:hover{
+  background-color: white;
+  color: gold;
+  border: 2px solid white;
+}
 
 #RSVP_comment_box {
   height: 10vh;
