@@ -9,8 +9,12 @@ div {
   text-align: center;
 }
 
-p {
+/*p {
 text-align: center;
+}*/
+
+h1{
+  text-align: center;
 }
 
 h2{
@@ -68,6 +72,14 @@ input[type=password]:focus{
   box-shadow: none;
  }
 
+input[type=text]:focus::-webkit-input-placeholder {
+  color:transparent;
+ }
+
+input[type=password]:focus::-webkit-input-placeholder {
+  color:transparent;
+  }
+
 .signinbtn{
   border: 2px solid transparent;
    background: orange;
@@ -89,6 +101,7 @@ input[type=password]:focus{
   background-color: darkorange;
 }
 
+/*NAVIGATION BAR*/
 .nav{
   border: 2px solid gold;
   background-color: gold;
@@ -107,7 +120,56 @@ input[type=password]:focus{
   border: 2px solid white;
 }
 
+/*RSVP*/
+.guestinput{
+  padding: 20px;
+}
+
+.guestattending{
+text-align: center;
+display: list-item;
+}
+
+
 #RSVP_comment_box {
-  height: 10vh;
-  width: 20vw;
+  height: 111px;
+  width: 512px;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  transition: border .5s;
+}
+
+#RSVP_comment_box:focus{
+  border: 2px solid orange;
+  box-shadow: none;
+}
+
+#RSVP_comment_box:focus::-webkit-input-placeholder {
+  color:transparent;
+}
+
+.submitbtn{
+  border: 2px solid transparent;
+   background: orange;
+   color: #ffffff;
+   font-size: 16px;
+   line-height: 25px;
+   padding: 10px 0;
+   text-decoration: none;
+   text-shadow: none;
+   border-radius: 3px;
+   box-shadow: none;
+   transition: 0.25s;
+   display: block;
+   width: 250px;
+   margin: 20px auto;
+}
+
+.submitbtn:hover{
+  background-color: darkorange;
 }

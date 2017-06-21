@@ -10,21 +10,23 @@
 <form name="guestRSVPForm" ng-submit="guest.AddGuest()">
 
 <!--names-->
+<div class="guestinput">
 <input type = "text" placeholder="Enter first name" ng-model="guest.newGuest.firstName" required/>
 <input type = "text" placeholder="Enter last name" ng-model="guest.newGuest.lastName" required/>
-
+</div>
 
 <!--guest-->
 <br>
-<label>Extra Guests:</label><select ng-model="guest.newGuest.extraGuests">
-  <option ng-repeat="option in guest.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
+<label>Extra Guests:</label>
+<select class="guest" ng-model="guest.newGuest.extraGuests">
+  <option class="guestoption" ng-repeat="option in guest.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
 </select>
 
 <!--events-->
 <br>
 <label>Attending:</label>
 <br>
-<div ng-repeat="event in guest.eventOptions">
+<div class="guestattending" ng-repeat="event in guest.eventOptions">
   <input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="event">{{ event }}
 </div>
 
@@ -55,7 +57,7 @@
 </textarea>
 
 <br>
-<input type="submit" value="submit" >
+<input class="submitbtn" type="submit" value="Submit" >
 </form>
 
 </div>
