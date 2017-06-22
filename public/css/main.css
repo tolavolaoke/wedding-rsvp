@@ -1,7 +1,175 @@
+/*FONT STYLE FOR THE WHOLE APP*/
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
 
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+
+div {
+  text-align: center;
+}
+
+/*p {
+text-align: center;
+}*/
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+/*lOGIN FORM*/
+.login{
+  border: 3px solid #f1f1f1;
+  margin: 50px 300px;
+  padding: 50px 50px;
+}
+
+.email {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.password {
+  text-align: center;
+  margin: 20px;
+}
+
+input[type=text]{
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+
+input[type=password]{
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+
+input[type=text]:focus{
+  border: 2px solid orange;
+  box-shadow: none;
+  }
+
+input[type=password]:focus{
+  border: 2px solid orange;
+  box-shadow: none;
+ }
+
+input[type=text]:focus::-webkit-input-placeholder {
+  color:transparent;
+ }
+
+input[type=password]:focus::-webkit-input-placeholder {
+  color:transparent;
+  }
+
+.signinbtn{
+  border: 2px solid transparent;
+   background: orange;
+   color: #ffffff;
+   font-size: 16px;
+   line-height: 25px;
+   padding: 10px 0;
+   text-decoration: none;
+   text-shadow: none;
+   border-radius: 3px;
+   box-shadow: none;
+   transition: 0.25s;
+   display: block;
+   width: 250px;
+   margin: 20px auto;
+}
+
+.signinbtn:hover{
+  background-color: darkorange;
+}
+
+/*NAVIGATION BAR*/
+.nav{
+  border: 2px solid gold;
+  background-color: gold;
+  padding: 20px;
+}
+
+.nav a{
+  text-decoration: none;
+  color: white;
+  padding: 30px;
+}
+
+.nav a:hover{
+  background-color: white;
+  color: gold;
+  border: 2px solid white;
+}
+
+/*RSVP*/
+.guestinput{
+  padding: 20px;
+}
+
+.guestattending{
+text-align: center;
+display: list-item;
+}
 
 
 #RSVP_comment_box {
-  height: 10vh;
-  width: 20vw;
+  height: 111px;
+  width: 512px;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  transition: border .5s;
+}
+
+#RSVP_comment_box:focus{
+  border: 2px solid orange;
+  box-shadow: none;
+}
+
+#RSVP_comment_box:focus::-webkit-input-placeholder {
+  color:transparent;
+}
+
+.submitbtn{
+  border: 2px solid transparent;
+   background: orange;
+   color: #ffffff;
+   font-size: 16px;
+   line-height: 25px;
+   padding: 10px 0;
+   text-decoration: none;
+   text-shadow: none;
+   border-radius: 3px;
+   box-shadow: none;
+   transition: 0.25s;
+   display: block;
+   width: 250px;
+   margin: 20px auto;
+}
+
+.submitbtn:hover{
+  background-color: darkorange;
 }
