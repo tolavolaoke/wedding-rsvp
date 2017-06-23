@@ -25,16 +25,33 @@ function GuestController(GuestFactory, $stateParams) {
   //     }
   //   );
   // };
-
+  // controller.getAll = function() {
+  //   var adminUid = $stateParams.id;
+  //   GuestFactory.getAll(adminUid).then(
+  //   function success (response) {
+  //     controller.guests = response.data;
+  //     console.log('Got guests', controller.getAll);
+  //     console.log(controller.guests);
+  //   }, function err(err) {
+  //     console.warn('Could not get guests', err);
+  //   }
+  //  );
+  // };
 
 
   function init() {
-    console.log(controller, 'guestController');
     controller.extraGuestsOptions = [0, 1 , 2];
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
-    console.log(controller.newGuest);
     controller.guests = [];
+    controller.timestamp = function() {
+      controller.date = new Date();
+      controller.seconds = controller.date.getUTCSeconds();
+      controller.minutes = controller.date.getUTCMinutes();
+      controller.hours = controller.date.getUTCHours() + 1;
+    };
+    console.log(controller.timeStamp);
+    console.log(controller.newGuest);
 
 
 
@@ -46,7 +63,9 @@ function GuestController(GuestFactory, $stateParams) {
       }, function err(err) {
       console.warn('Could not get guests', err);
     }
-    );
+     );
+
+
   }
   init();
 }

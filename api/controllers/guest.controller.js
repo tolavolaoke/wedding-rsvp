@@ -11,12 +11,23 @@ var Guest = require('../models/guest.model');
 //   }
 // }
 
+//LOOK AT THIS FOR ADMIN PURPOSE
+// function getAll(req, res) {
+//   var adminUid = process.env.Admin;
+//   Guest.find(function(err, guests){
+//     console.log(adminUid, 'adminUid');
+//     if (err || req.param.id !== adminUid ) {
+//       return res.json(err);
+//     } else {
+//       return res.status(200).json(guests);
+//     }
+//   });
+// }
+
 
 function getAll(req, res) {
-  var adminUid = process.env.Admin;
   Guest.find(function(err, guests){
-    console.log(adminUid, 'adminUid');
-    if (err || req.param.id !== adminUid ) {
+    if (err) {
       return res.json(err);
     } else {
       return res.status(200).json(guests);

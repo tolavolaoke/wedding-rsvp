@@ -21,6 +21,10 @@ const GuestSchema = Schema({
   comments: {
     type: String,
     required: false
+  },
+  timeStamp: {
+    type: Date,
+    required: true
   }
 });
 

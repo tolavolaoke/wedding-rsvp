@@ -15,11 +15,10 @@ function GuestFactory ($http) {
   //     });
   //   }
   // };
-    getAll: function(adminUid) {
+    getAll: function() {
       return $http({
         method: 'GET',
-        url: `/guestbook/${adminUid}`,
-        data: adminUid
+        url: '/guestbook'
       });
     }
   };

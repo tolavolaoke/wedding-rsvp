@@ -1,11 +1,17 @@
 <div ui-view="navbar"></div>
 
-<h1>GuestBook</h1>
+<h1 class="col-md-offset-5 guestbook-title">GuestBook</h1>
 <div ng-controller = "GuestController as guest">
 
- <p ng-repeat="peas in guest.guests">
-   <b>{{ peas.firstName }} {{ peas.lastName}}</b>
-   <br>
-   {{ peas.comments }}</p>
+<div class="container">
+  <ul class="comment-section" ng-repeat="peas in guest.guests track by $index" >
+    <li>
+         <div class="panel panel-default">
+           <div class="panel-heading guestBookNames">{{ peas.firstName }} {{peas.lastName}} {{peas.timeStamp}} </div>
+           <div class="panel-body">{{ peas.comments }} </div>
+         </div>
+    </li>
+  </ul>
 
+ </div>
 </div>
