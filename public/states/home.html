@@ -1,7 +1,6 @@
 <section ng-controller="GuestController as guests">
   <div ng-init="guests.getSingleUser()">
-    something: {{guests.uid}} {{guests}}
-  </div>
 
-  <button ng-click="guests.getAll()">Press me for Errors</button>
+    <img ng-src="{{guests.randomImages()}}" alt="">
+  </div>
 </section>

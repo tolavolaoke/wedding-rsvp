@@ -37,7 +37,6 @@ function GuestController(GuestFactory, $stateParams) {
   //   }
   //  );
   // };
-
   controller.randomImages = function() {
     controller.images = [
       'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
@@ -53,6 +52,8 @@ function GuestController(GuestFactory, $stateParams) {
     }
     return controller.images[i];
   };
+
+
 
 
   function init() {
