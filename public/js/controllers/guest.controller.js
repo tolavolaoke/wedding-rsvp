@@ -44,13 +44,6 @@ function GuestController(GuestFactory, $stateParams) {
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     controller.guests = [];
-    controller.timestamp = function() {
-      controller.date = new Date();
-      controller.seconds = controller.date.getUTCSeconds();
-      controller.minutes = controller.date.getUTCMinutes();
-      controller.hours = controller.date.getUTCHours() + 1;
-    };
-    console.log(controller.timeStamp);
     console.log(controller.newGuest);
 
 

@@ -13,33 +13,54 @@
 
 /*==============================GUESTBOOK==============================*/
 .guestbook-title {
+  text-align: center;
   padding-bottom: 20px;
 }
 .comment-section{
     list-style: none;
-    width: 100%;
+    width: 50%;
     justify-content: center;
+    float: left;
+    padding: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
 }
 
-.comment{
+.guestBookList {
+  border-bottom: lightgray  dashed 1px;
+}
+
+.guest-img {
+  width: 8%;
+  height: 5%;
+  border: 1px lightgray solid;
+  margin-right: 5%;
+  border-radius: 30px;
+  display: inline-flex;
+}
+
+.guestBookNames {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align:middle;
+}
+.guestBookComments {
+    display: block;
+    text-transform: capitalize;
+    margin-top: 10%;
+    margin-left: 14%;
+    vertical-align:middle;
     display: flex;
     width: 70%;
     border-radius: 3px;
     margin-bottom: 45px;
     flex-wrap: wrap;
+    color: #808080;
 }
 
-.comment.user-comment{
-    color:  #808080;
-}
-
-
-/* The comment username */
-
-.guestBookNames {
-    display: block;
-    text-transform: capitalize;
-}
 
 
 
@@ -99,3 +120,5 @@
         width: 100%;
     }
 }
+
+/*==============================GUESTBOOK==============================*/
