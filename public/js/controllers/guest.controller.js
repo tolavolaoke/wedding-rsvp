@@ -38,13 +38,29 @@ function GuestController(GuestFactory, $stateParams) {
   //  );
   // };
 
+  controller.randomImages = function() {
+    controller.images = [
+      'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
+      'http://icons.iconarchive.com/icons/icons-land/vista-love/256/Wedding-Car-Back-icon.png',
+      'https://img0.etsystatic.com/108/0/10598554/il_340x270.1017022734_76sg.jpg',
+      'http://www.clker.com/cliparts/b/u/q/6/S/D/groom-hi.png',
+      'http://www.clipartlord.com/wp-content/uploads/2016/07/church14.png'
+    ];
+
+    var i;
+    for(i = 0; i < controller.images.length; i++) {
+      return controller.images[i];
+    }
+    return controller.images[i];
+  };
+
 
   function init() {
     controller.extraGuestsOptions = [0, 1 , 2];
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     controller.guests = [];
-    console.log(controller.newGuest);
+    console.log(controller.randomImages(), 'here');
 
 
 
