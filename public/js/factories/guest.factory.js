@@ -7,6 +7,14 @@ function GuestFactory ($http) {
         data: newGuest
       });
     },
+  
+    deleteGuest: function(guestId) {
+      return $http({
+        method: 'DELETE',
+        url: `/guests/${guestId}`
+      });
+    },
+
   //   getSingleUser: function(uid) {
   //     return $http({
   //       method: 'GET',

@@ -43,12 +43,23 @@ function createGuest(req, res) {
       return res.status(200).json({Guest});
     }
   });
+}
 
+function deleteGuest(req, res) {
+  var guestId = req.params.guestId;
+  Guest.deleteOne({ _id: guestId }, function(err) {
+    if (err) {
+      return res.json(err, 'Could not find guest to delete');
+    } else {
+      return res.status(200).json({Guest});
+    }
+  });
 }
 
 
 module.exports = {
   createGuest: createGuest,
+  deleteGuest: deleteGuest,
   getAll: getAll
   // getSingleUser: getSingleUser
 };

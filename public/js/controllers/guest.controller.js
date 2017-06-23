@@ -2,6 +2,8 @@
 function GuestController(GuestFactory, $stateParams) {
   var controller = this;
 
+
+
   controller.AddGuest = function() {
     GuestFactory.createGuest(controller.newGuest).then(
             function sucess(response) {
@@ -12,6 +14,20 @@ function GuestController(GuestFactory, $stateParams) {
             }
           );
   };
+
+  controller.deleteGuest = function(guestId) {
+    console.log(guestId);
+    GuestFactory.deleteGuest(guestId).then(
+    function sucess(response) {
+      console.log('deleted guest:', response);
+    },
+    function error(error) {
+      console.warn('Error creating Guest:', error);
+    }
+   );
+  };
+
+
 
   // controller.getSingleUser = function() {
   //   var uid = $stateParams.uid;
