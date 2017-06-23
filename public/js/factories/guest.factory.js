@@ -7,7 +7,6 @@ function GuestFactory ($http) {
         data: newGuest
       });
     },
-  
     deleteGuest: function(guestId) {
       return $http({
         method: 'DELETE',
