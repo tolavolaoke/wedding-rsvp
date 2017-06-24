@@ -106,6 +106,21 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
+    .state('edit', {
+      url: '/edit',
+      views: {
+        '': { templateUrl: '../states/partials/_guest.edit.html' },
+        'navbar@rsvp': { templateUrl: '../states/partials/_guest.edit.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
+    })
     .state('contact-us', {
       url: '/contact-us',
       views: {

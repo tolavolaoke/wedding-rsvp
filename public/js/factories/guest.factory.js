@@ -13,6 +13,19 @@ function GuestFactory ($http) {
         url: `/guests/${guestId}`
       });
     },
+    getGuest: function(guestId) {
+      return $http({
+        method: 'GET',
+        url: `/guests/${guestId}`
+      });
+    },
+    updateGuest: function(updatedGuest) {
+      return $http({
+        method: 'PATCH',
+        url: `/guests/${updatedGuest.id}`,
+        data: updatedGuest
+      });
+    },
 
   //   getSingleUser: function(uid) {
   //     return $http({

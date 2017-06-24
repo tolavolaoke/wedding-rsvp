@@ -1,8 +1,26 @@
 
-function GuestController(GuestFactory, $stateParams) {
+function GuestController(GuestFactory, $stateParams, $state) {
   var controller = this;
 
 
+//****************************GET GUEST***********************************//
+  controller.getGuest= function(guestId){
+    console.log(guestId);
+
+    if (guestId) {
+      GuestFactory.getGuest(guestId).then(
+        function success(success) {
+          controller.guestDetails = success.data;
+          initialiseUpdatedGuest(success.data.guest);
+        },
+        function error(error) {
+          console.warn('Error getting course:', error.message);
+        }
+      );
+    }
+  };
+
+//****************************ADD GUEST***********************************//
 
   controller.AddGuest = function() {
     GuestFactory.createGuest(controller.newGuest).then(
@@ -14,6 +32,8 @@ function GuestController(GuestFactory, $stateParams) {
             }
           );
   };
+
+//**************************DELETE GUEST***********************************//
 
   controller.deleteGuest = function(guestId) {
     console.log(guestId);
@@ -28,31 +48,27 @@ function GuestController(GuestFactory, $stateParams) {
   };
 
 
+//**************************UPDATE GUEST***********************************//
+  controller.updateGuest = function () {
+    GuestFactory.updateGuest(controller.updatedGuest).then(
+      function success() {
+        $state.go('edit');
+      },
+      function error(error) {
+        console.warn('Error updating guest:', error);
+      }
+    );
+  };
 
-  // controller.getSingleUser = function() {
-  //   var uid = $stateParams.uid;
-  //   GuestFactory.getSingleUser(uid).then(
-  //     function success(success) {
-  //       console.log('Success getting single guest');
-  //       controller.guest = success.data;
-  //     },
-  //     function error(error) {
-  //       console.warn('Could not get single guest', error);
-  //     }
-  //   );
-  // };
-  // controller.getAll = function() {
-  //   var adminUid = $stateParams.id;
-  //   GuestFactory.getAll(adminUid).then(
-  //   function success (response) {
-  //     controller.guests = response.data;
-  //     console.log('Got guests', controller.getAll);
-  //     console.log(controller.guests);
-  //   }, function err(err) {
-  //     console.warn('Could not get guests', err);
-  //   }
-  //  );
-  // };
+  function initialiseUpdatedGuest(currentGuest) {
+    controller.updatedGuest = {};
+    controller.updatedGuest.name = currentGuest.firstName;
+    controller.updatedGuest.extraGuests = currentGuest.extraGuests;
+    controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
+  }
+
+  //**************************GUESTBOOK IMAGES***********************************//
+
   controller.randomImages = function() {
     controller.images = [
       'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
@@ -66,37 +82,41 @@ function GuestController(GuestFactory, $stateParams) {
     for(i = 0; i < controller.images.length; i++) {
       return controller.images[i];
     }
-    return controller.images[i];
   };
 
 
 
 
+//**************************INITIALISE***********************************//
   function init() {
     controller.extraGuestsOptions = [0, 1 , 2];
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     controller.guests = [];
-    console.log(controller.randomImages(), 'here');
+    controller.guestDetails = {};
 
 
+//**************************ALL GUEST*********************************//
 
     GuestFactory.getAll($stateParams).then(
       function success (response) {
         controller.guests = response.data;
-        console.log('Got guests', controller.getAll);
-        console.log(controller.guests);
-      }, function err(err) {
-      console.warn('Could not get guests', err);
-    }
+        console.log('Got guests', controller.guests);
+      },
+      function err(err) {
+        console.warn('Could not get guests', err);
+      }
      );
+
 
 
   }
   init();
 }
+//********************************************************************//
 
-GuestController.$inject = ['GuestFactory', '$stateParams'];
+
+GuestController.$inject = ['GuestFactory', '$stateParams', '$state'];
 
 angular
   .module('wedding-rsvp')

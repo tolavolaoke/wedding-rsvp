@@ -1,34 +1,21 @@
 var Guest = require('../models/guest.model');
-// var Err   = require('../utilities/badRequestHandler');
-
-// function getSingleUser (req, res) {
-//   var uid = req && req.params && req.params.uid;
-//   if(!uid) return Err.missingParams(req, ['uid']);
-//
-//   // if (req.user.user_id !== process.env.Admin) {
-//   if (req.user.user_id !== uid) {
-//     return Err.unauthorizedReq(res);
-//   }
-// }
-
-//LOOK AT THIS FOR ADMIN PURPOSE
-// function getAll(req, res) {
-//   var adminUid = process.env.Admin;
-//   Guest.find(function(err, guests){
-//     console.log(adminUid, 'adminUid');
-//     if (err || req.param.id !== adminUid ) {
-//       return res.json(err);
-//     } else {
-//       return res.status(200).json(guests);
-//     }
-//   });
-// }
-
 
 function getAll(req, res) {
   Guest.find(function(err, guests){
     if (err) {
       return res.json(err);
+    } else {
+      return res.status(200).json(guests);
+    }
+  });
+}
+
+function getGuest(req, res) {
+  var guestId = req.params.guestId;
+
+  Guest.findOne({ _id: guestId}, function(err, guests){
+    if (err) {
+      return res.json(err,'could not retrieve this guest');
     } else {
       return res.status(200).json(guests);
     }
@@ -55,11 +42,24 @@ function deleteGuest(req, res) {
     }
   });
 }
+function updateGuest(req, res) {
+  var guestId = req.params.guestId;
+  var updatedGuest = req.body;
+  Guest.findOneAndUpdate({ _id: guestId }, updatedGuest, function(err) {
+    if (err) {
+      return res.json(err, 'Could not existing guest to update');
+    } else {
+      return res.status(200).json(updateGuest);
+    }
+  });
+}
 
 
 module.exports = {
   createGuest: createGuest,
   deleteGuest: deleteGuest,
-  getAll: getAll
+  getAll: getAll,
+  getGuest: getGuest,
+  updateGuest: updateGuest
   // getSingleUser: getSingleUser
 };

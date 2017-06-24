@@ -21,10 +21,10 @@
               <td>{{ person.firstName}} {{ guest.lastName}}</td>
               <td>{{ person.attendingEvents}}</td>
               <td>{{ person.extraGuests}}</td>
-              <td><a href="#" class="btn btn-info btn-lg">
+              <td><a ui-sref="edit({ guestId:person._id })" ng-click="guest.getGuest(person._id)" class="btn btn-info btn-lg" >
                     <span class="glyphicon glyphicon-pencil"></span>
                   </a>
-                 <button type="button" class="close" aria-label="Close" ng-click="guest.deleteGuest(person._id)"> 
+                 <button type="button" class="close" aria-label="Close" ng-click="guest.deleteGuest(person._id)">
                     <span aria-hidden="true">&times;</span>
                 </button>
 
