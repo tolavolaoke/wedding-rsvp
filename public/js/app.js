@@ -8,9 +8,21 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         'navbar@login': { templateUrl: '../states/partials/navbar.html' }
       }
     })
-    .state('home', {
-      url: '/home',
-      templateUrl: '../states/home.html'
+    .state('admin', {
+      url: '/admin',
+      views: {
+        '': { templateUrl: '../states/admin.html' },
+        'navbar@admin': { templateUrl: '../states/partials/navbar.html' },
+        'edit@admin': { templateUrl: '../states/partials/_guest.edit.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
     })
     .state('auth-required', {
       url: '/authrequired',
@@ -96,21 +108,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: '../states/rsvp.html' },
         'navbar@rsvp': { templateUrl: '../states/partials/navbar.html' }
-      },
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
-    })
-    .state('edit', {
-      url: '/edit',
-      views: {
-        '': { templateUrl: '../states/partials/_guest.edit.html' },
-        'navbar@rsvp': { templateUrl: '../states/partials/_guest.edit.html' }
       },
       resolve: {
         currentAuth: [

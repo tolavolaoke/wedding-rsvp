@@ -50,7 +50,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 //**************************UPDATE GUEST***********************************//
   controller.updateGuest = function () {
-    GuestFactory.updateGuest(controller.updatedGuest).then(
+    GuestFactory.updateGuest(controller.updatedGuest, controller.updatedGuestId).then(
       function success() {
         $state.go('edit');
       },
@@ -60,12 +60,17 @@ function GuestController(GuestFactory, $stateParams, $state) {
     );
   };
 
-  function initialiseUpdatedGuest(currentGuest) {
-    controller.updatedGuest = {};
-    controller.updatedGuest.name = currentGuest.firstName;
-    controller.updatedGuest.extraGuests = currentGuest.extraGuests;
-    controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
-  }
+  controller.selectGuest = function(guest) {
+    controller.selectedGuest = guest;
+  };
+
+
+  // function initialiseUpdatedGuest(currentGuest) {
+  //   controller.updatedGuest = {};
+  //   controller.updatedGuest.name = currentGuest.firstName;
+  //   controller.updatedGuest.extraGuests = currentGuest.extraGuests;
+  //   controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
+  // }
 
   //**************************GUESTBOOK IMAGES***********************************//
 
@@ -84,7 +89,17 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   };
 
-
+  controller.getAll = function() {
+    GuestFactory.getAll($stateParams).then(
+      function success (response) {
+        controller.guests = response.data;
+        console.log('Got guests', controller.guests);
+      },
+      function err(err) {
+        console.warn('Could not get guests', err);
+      }
+     );
+  };
 
 
 //**************************INITIALISE***********************************//
@@ -97,17 +112,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
 //**************************ALL GUEST*********************************//
-
-    GuestFactory.getAll($stateParams).then(
-      function success (response) {
-        controller.guests = response.data;
-        console.log('Got guests', controller.guests);
-      },
-      function err(err) {
-        console.warn('Could not get guests', err);
-      }
-     );
-
 
 
   }

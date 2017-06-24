@@ -1,6 +1,6 @@
 <div ui-view="navbar"></div>
 
-<div ng-controller = "GuestController as guest">
+<div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
 
 <div class="container">
   <h1 class="guestbook-title">GuestBook</h1>

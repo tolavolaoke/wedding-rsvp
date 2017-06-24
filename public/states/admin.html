@@ -1,0 +1,95 @@
+<div ui-view="navbar"></div>
+
+<!-- <div ng-init="guests.getSingleUser()"> -->
+<div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
+    <div class="container">
+      <h2 class="guestbook-title">Admin</h2>
+
+      <table class="table table-hover">
+        <thead class="tableHead">
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Attending Events</th>
+            <th>Additional Guests</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="person in guest.guests track by $index">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ person.firstName}} {{ guest.lastName}}</td>
+            <td>{{ person.attendingEvents}}</td>
+            <td>{{ person.extraGuests}}</td>
+            <td><button ng-click="guest.selectGuest(person)" class="btn btn-info btn-lg"></button>
+                  <span class="glyphicon glyphicon-pencil"></span>
+               <button type="button" class="close" aria-label="Close" ng-click="guest.deleteGuest(person._id)">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+     </div>
+     <!-- guest modal -->
+      <div>
+        <h1>Edit Guest</h1>
+
+
+
+        <div>
+
+
+        firstName
+          <form ng-submit="guest.updateGuest()">
+
+              <input
+                type="text"
+                ng-value="guest.selectedGuest.firstName"
+                ng-model="guest.updatedGuest.firstName"/>
+
+        lastName
+              <input
+                type="text"
+                ng-value="guest.selectedGuest.lastName"
+                ng-model="guest.updatedGuest.lastName"/>
+
+        extraGuests
+              <select
+                ng-model="guest.updatedGuest.extraGuests">
+                <option
+                  ng-repeat="option in guest.extraGuestsOptions"
+                  ng-selected="option"
+                  ng-value="option">{{ option }}
+                </option>
+              </select>
+
+        attendingEvents
+              <select
+                ng-model="guest.updatedGuest.attendingEvents">
+                <option
+                  ng-repeat="event in guest.eventOptions"
+                  ng-selected="event"
+                  ng-option="event">
+                </option>
+              </select>
+
+              <input type="hidden"
+                ng-value="guest.selectedGuest._id"
+                ng-model="guest.updatedGuestId">
+
+            <div>
+              <input type="submit" value="Update">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+  </div>
+
+<!-- </div> -->
