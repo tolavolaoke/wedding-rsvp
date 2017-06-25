@@ -22,8 +22,8 @@
             <td>{{ person.firstName}} {{ guest.lastName}}</td>
             <td>{{ person.attendingEvents}}</td>
             <td>{{ person.extraGuests}}</td>
-            <td><button ng-click="guest.selectGuest(person)" class="btn btn-info btn-lg"></button>
-                  <span class="glyphicon glyphicon-pencil"></span>
+            <td><button ng-click="guest.selectGuest(person)" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-pencil"></span></button>
                <button type="button" class="close" aria-label="Close" ng-click="guest.deleteGuest(person._id)">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -34,52 +34,44 @@
         </tbody>
       </table>
      </div>
-     <!-- guest modal -->
-      <div>
+
+     <!-- ________________guest modal________________ -->
+
+      <div ng-if="guest.isEditFormVisible">
         <h1>Edit Guest</h1>
-
-
 
         <div>
 
-
         firstName
-          <form ng-submit="guest.updateGuest()">
-
-              <input
-                type="text"
-                ng-value="guest.selectedGuest.firstName"
-                ng-model="guest.updatedGuest.firstName"/>
+          <form ng-submit="guest.updateGuest(guest.selectedGuest._id)">
+            <input
+              type="text"
+              ng-value="guest.selectedGuest.firstName"
+              ng-model="guest.updatedGuest.firstName"/>
 
         lastName
-              <input
-                type="text"
-                ng-value="guest.selectedGuest.lastName"
-                ng-model="guest.updatedGuest.lastName"/>
-
-        extraGuests
-              <select
-                ng-model="guest.updatedGuest.extraGuests">
-                <option
-                  ng-repeat="option in guest.extraGuestsOptions"
-                  ng-selected="option"
-                  ng-value="option">{{ option }}
-                </option>
-              </select>
+            <input
+              type="text"
+              ng-value="guest.selectedGuest.lastName"
+              ng-model="guest.updatedGuest.lastName"/>
 
         attendingEvents
-              <select
-                ng-model="guest.updatedGuest.attendingEvents">
-                <option
-                  ng-repeat="event in guest.eventOptions"
-                  ng-selected="event"
-                  ng-option="event">
-                </option>
-              </select>
+            <select ng-model="guest.updatedGuest.attendingEvents">
+              <option
+                ng-repeat="event in guest.eventOptions"
+                ng-selected="event"
+                ng-value="event">{{ event }}
+              </option>
+            </select>
 
-              <input type="hidden"
-                ng-value="guest.selectedGuest._id"
-                ng-model="guest.updatedGuestId">
+        extraGuests
+            <select ng-model="guest.updatedGuest.extraGuests">
+              <option
+                ng-repeat="option in guest.extraGuestsOptions"
+                ng-selected="option"
+                ng-value="option">{{ option }}
+              </option>
+            </select>
 
             <div>
               <input type="submit" value="Update">

@@ -49,10 +49,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
 //**************************UPDATE GUEST***********************************//
-  controller.updateGuest = function () {
-    GuestFactory.updateGuest(controller.updatedGuest, controller.updatedGuestId).then(
+  controller.updateGuest = function (guestId) {
+    GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
       function success() {
-        $state.go('edit');
+        $state.reload();
       },
       function error(error) {
         console.warn('Error updating guest:', error);
@@ -62,6 +62,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
   controller.selectGuest = function(guest) {
     controller.selectedGuest = guest;
+    controller.isEditFormVisible = true;
   };
 
 
@@ -109,6 +110,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.newGuest = {};
     controller.guests = [];
     controller.guestDetails = {};
+    controller.isEditFormVisible = false;
 
 
 //**************************ALL GUEST*********************************//

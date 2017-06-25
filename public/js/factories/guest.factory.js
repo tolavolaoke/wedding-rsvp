@@ -19,14 +19,11 @@ function GuestFactory ($http) {
         url: `/guests/${guestId}`
       });
     },
-    updateGuest: function(updatedGuest, updatedGuestId) {
+    updateGuest: function(updatedGuest, guestId) {
       return $http({
         method: 'PATCH',
-        url: `/guests/${updatedGuest.id}`,
-        data: {
-          updatedGuest,
-          updatedGuestId
-        }
+        url: `/guests/${guestId}`,
+        data: updatedGuest
       });
     },
 

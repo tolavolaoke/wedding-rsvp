@@ -45,12 +45,16 @@ function deleteGuest(req, res) {
 function updateGuest(req, res) {
   var guestId = req.params.guestId;
   var updatedGuest = req.body;
-  Guest.findOneAndUpdate({ _id: guestId }, updatedGuest, function(err) {
-    if (err) {
-      return res.json(err, 'Could not existing guest to update');
-    } else {
-      return res.status(200).json(updateGuest);
-    }
+  Guest.findById({ _id: guestId }, function(err, guest) {
+    if (err) return res.json(err, 'Could not get existing guest to update');
+    if(updatedGuest.firstName) guest.firstName = updatedGuest.firstName;
+    if(updatedGuest.lastName) guest.lastName = updatedGuest.lastName;
+    if(updatedGuest.attendingEvents) guest.attendingEvents = updatedGuest.attendingEvents;
+    if(updatedGuest.extraGuests) guest.extraGuests = updatedGuest.extraGuests;
+    guest.save(function(error) {
+      if(error) return res.json({ message: 'could not get guest to save'});
+      res.json({ message: 'guest successfully saved'});
+    });
   });
 }
 
