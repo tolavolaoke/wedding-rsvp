@@ -11,7 +11,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
       GuestFactory.getGuest(guestId).then(
         function success(success) {
           controller.guestDetails = success.data;
-          initialiseUpdatedGuest(success.data.guest);
+          // initialiseUpdatedGuest(success.data.guest);
+
         },
         function error(error) {
           console.warn('Error getting course:', error.message);
@@ -19,6 +20,16 @@ function GuestController(GuestFactory, $stateParams, $state) {
       );
     }
   };
+
+
+  // function initialiseUpdatedGuest(currentGuest) {
+  //   controller.updatedGuest = {};
+  //   console.log(controller.updatedGuest);
+  //   // controller.updatedGuest.id = currentGuest.id;
+  //   controller.updatedGuest.name = currentGuest.firstName;
+  //   controller.updatedGuest.extraGuests = currentGuest.extraGuests;
+  //   controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
+  // }
 
 //****************************ADD GUEST***********************************//
 
@@ -50,7 +61,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 //**************************UPDATE GUEST***********************************//
   controller.updateGuest = function (guestId) {
-    GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
+    controller.selectedGuest._id = $stateParams.guestId;
+    GuestFactory.updateGuest(controller.selectedGuest, guestId).then(
       function success() {
         $state.reload();
       },
@@ -65,30 +77,31 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.isEditFormVisible = true;
   };
 
-
-  // function initialiseUpdatedGuest(currentGuest) {
-  //   controller.updatedGuest = {};
-  //   controller.updatedGuest.name = currentGuest.firstName;
-  //   controller.updatedGuest.extraGuests = currentGuest.extraGuests;
-  //   controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
-  // }
-
   //**************************GUESTBOOK IMAGES***********************************//
 
-  controller.randomImages = function() {
-    controller.images = [
-      'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
-      'http://icons.iconarchive.com/icons/icons-land/vista-love/256/Wedding-Car-Back-icon.png',
-      'https://img0.etsystatic.com/108/0/10598554/il_340x270.1017022734_76sg.jpg',
-      'http://www.clker.com/cliparts/b/u/q/6/S/D/groom-hi.png',
-      'http://www.clipartlord.com/wp-content/uploads/2016/07/church14.png'
-    ];
+  controller.randomiseImages = function() {
+    // for(var i = 0; i < controller.images.length; i++) {
+    //   return controller.images[i];
+    // }
+    var currentIndex = controller.images.length, temporaryValue, randomIndex;
 
-    var i;
-    for(i = 0; i < controller.images.length; i++) {
-      return controller.images[i];
+  // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+    // And swap it with the current element.
+      temporaryValue = controller.images[currentIndex];
+      controller.images[currentIndex] = controller.images[randomIndex];
+      controller.images[randomIndex] = temporaryValue;
     }
+    return controller.images;
   };
+
+
+
 
   controller.getAll = function() {
     GuestFactory.getAll($stateParams).then(
@@ -103,14 +116,24 @@ function GuestController(GuestFactory, $stateParams, $state) {
   };
 
 
+
+
 //**************************INITIALISE***********************************//
   function init() {
-    controller.extraGuestsOptions = [0, 1 , 2];
+    controller.extraGuestsOptions = [1 , 2];
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     controller.guests = [];
-    controller.guestDetails = {};
+    // controller.guestDetails = {};
     controller.isEditFormVisible = false;
+    controller.images = [
+      'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
+      'http://icons.iconarchive.com/icons/icons-land/vista-love/256/Wedding-Car-Back-icon.png',
+      'https://img0.etsystatic.com/108/0/10598554/il_340x270.1017022734_76sg.jpg',
+      'http://www.clker.com/cliparts/b/u/q/6/S/D/groom-hi.png',
+      'http://www.clipartlord.com/wp-content/uploads/2016/07/church14.png'
+    ];
+    controller.randomiseImages();
 
 
 //**************************ALL GUEST*********************************//

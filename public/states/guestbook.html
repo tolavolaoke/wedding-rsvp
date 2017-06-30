@@ -6,7 +6,7 @@
   <h1 class="guestbook-title">GuestBook</h1>
   <ul class="comment-section list-group row" ng-repeat="peas in guest.guests track by $index" >
     <li class="guestBookList">
-    <img class="guest-img" ng-src="{{guest.randomImages()}}"/>
+    <img class="guest-img" ng-src="{{guest.images[$index]}}"/>
          <!-- <div class="panel panel-default"> -->
            <div class="guestBookNames">
             {{ peas.firstName }} {{peas.lastName}}

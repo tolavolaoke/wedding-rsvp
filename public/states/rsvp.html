@@ -13,8 +13,8 @@
 <!--guest-->
 <br>
 <label>Extra Guests:</label>
-<select ng-model="guest.newGuest.extraGuests">
-  <option ng-repeat="option in guest.extraGuestsOptions" value="{{ option }}">{{ option }}</option>
+<select ng-model="guest.newGuest.extraGuests" ng-options="option for option in guest.extraGuestsOptions">
+  <option value="">0</option>
 </select>
 
 <!--events-->
@@ -25,23 +25,7 @@
   <input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="event">{{ event }}
 </div>
 
-  <div ng-switch="guest.newGuest.attendingEvents">
-  <div ng-switch-when="1">
-     <h1>Traditonal Wedding</h1>
-     <p>Date: 99/99/00 </p>
-     <p>Address:</p>
-  </div>
-  <div ng-switch-when="2">
-    <h1>White Wedding</h1>
-    <p>Date: 99/99/00 </p>
-    <p>Address:</p>
-  </div>
-  <div ng-switch-when="3">
-    <h1>Both</h1>
-    <p>Date: 99/99/00 </p>
-    <p>Address:</p>
-  </div>
-  </div>
+
 
 <!--comment-->
 <br>
