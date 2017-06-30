@@ -6,7 +6,7 @@
       <h2 class="guestbook-title">Admin</h2>
 
 <button type="button" name="button" class="btn btn-info btn-md" ng-click="isGuestListOpen = !isGuestListOpen">Guest List <span class="glyphicon glyphicon-resize-full"></span></button>
-<button type="button" name="button" class="btn btn-info btn-md" ng-click="isCheckListOpen = !isCheckListOpen">Check List<span class="glyphicon glyphicon-resize-full"></span></button>
+<button type="button" name="button" class="btn btn-info btn-md">Check List<span class="glyphicon glyphicon-resize-full"></span></button>
 <button type="button" name="button" class="btn btn-info btn-md">Gallery<span class="glyphicon glyphicon-resize-full"></span></button>
 
       <table class="table table hover" ng-show="isGuestListOpen">
@@ -17,40 +17,93 @@
             <th>Contact</th>
 
             <th>Attending Events </th>
-            <th>Additional Guests</th>
+            <th>+ Guests</th>
+            <th>Actions</th>
             <th></th>
           </tr>
         </thead>
 
         <tbody>
+              <form  ng-init="guest.getGuest(guest.newField._id)" > {{guest.newField}}
+
+
           <tr ng-repeat="person in guest.guests track by $index">
-            <td>{{ $index + 1 }}</td>
-            <td>{{ person.firstName}} {{ guest.lastName}}</td>
-            <td><span class="glyphicon glyphicon-envelope"></span>
-              <span class="glyphicon glyphicon-phone"></span></td>
-            <td class="admin-attending-events">{{ person.attendingEvents}}</td>
-            <td>{{ person.extraGuests}}</td>
-            <td>
-            <button type="button" class="btn btn-info btn-sml" ng-click="guest.selectGuest(person)">
-              <span class="glyphicon glyphicon-pencil"></span>
-            </button>
 
-             <button type="button" class="close" aria-label="Close" ng-click="guest.deleteGuest(person._id)">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <td>{{ $index + 1 }} </td>
 
+
+            <td ng-hide="editMode">{{ person.firstName}} {{ person.lastName}}</td>
+            <td ng-show="editMode" ng-init="guest.getGuest(person._id)">
+              <input
+                type="text"
+                ng-value="person.firstName"
+                ng-modal="guest.updatedGuest.firstName"/>
+
+
+              <input
+
+                type="text"
+                ng-value="person.lastName"/>
             </td>
+
+            <td>
+              <span class="glyphicon glyphicon-envelope"></span>
+              <span class="glyphicon glyphicon-phone"></span>
+            </td>
+
+            <td ng-hide="editMode" class="admin-attending-events" >{{ person.attendingEvents}}</td>
+            <td ng-show="editMode">
+                <select >
+
+                  <option
+                    ng-repeat="event in guest.eventOptions"
+                    ng-selected="event"
+                    ng-value="event">{{ event }}
+                  </option>
+                </select>
+            </td>
+
+
+            <td ng-hide="editMode">{{ person.extraGuests}}</td>
+            <td>
+              <select ng-show="editMode">
+                <option value="">0</option>
+                <option
+                  ng-repeat="option in guest.extraGuestsOptions"
+                  ng-value="option ">{{ option }}
+                </option>
+              </select>
+            </td>
+
+
+
+
+            <td>
+              <button type="submit" ng-hide="editMode" ng-click="editMode = true; guest.editGuest(person._id)" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+            <button ng-show="editMode" type="submit" class="btn btn-success" ng-click="guest.updateGuest(person)" value="Update">Save {{guest.newField}}</button>
+            <button ng-show="editMode" type="button" class="btn btn-danger"  ng-click="editMode = false">Undo</button>
+
+               <button type="button" class="close" aria-label="Close" ng-hide="editMode" ng-click="guest.deleteGuest(person._id)">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </td>
+
+
+
           </tr>
-
-
+            </form>
         </tbody>
 
       </table>
      </div>
 
+
+</div>
      <!-- ________________guest modal________________ -->
 
-      <div ng-if="guest.isEditFormVisible">
+      <!-- <div ng-if="guest.isEditFormVisible">
 
         <h1>Edit Guest</h1>
 
@@ -96,16 +149,6 @@
 
       </div>
 
-  </div>
+  </div> -->
 
 <!-- </div> -->
-
-<div ng-show="isCheckListOpen">
-<ul class="list-group">
-  <li class="list-group-item">First item</li>
-  <li class="list-group-item">Second item</li>
-  <li class="list-group-item">Third item</li>
-</ul>
-
-
-</div>

@@ -12,6 +12,9 @@ function getAll(req, res) {
 
 function getGuest(req, res) {
   var guestId = req.params.guestId;
+  console.log('GUESTID',guestId);
+  console.log(req.params);
+
 
   Guest.findOne({ _id: guestId}, function(err, guests){
     if (err) {
@@ -43,8 +46,11 @@ function deleteGuest(req, res) {
   });
 }
 function updateGuest(req, res) {
+  console.log('here update guest at the baaack!!!');
   var guestId = req.params.guestId;
+  console.log('GUESTID UPDATE', guestId);
   var updatedGuest = req.body;
+  console.log('REQ.BODY', updatedGuest);
   Guest.findById({ _id: guestId }, function(err, guest) {
     if (err) return res.json(err, 'Could not get existing guest to update');
     if(updatedGuest.firstName) guest.firstName = updatedGuest.firstName;

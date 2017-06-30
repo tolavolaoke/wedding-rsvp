@@ -3,6 +3,15 @@ function GuestController(GuestFactory, $stateParams, $state) {
   var controller = this;
 
 
+
+  controller.editGuest = function(person) {
+    console.log('Im here');
+    controller.editing = controller.guests.indexOf(person);
+    console.log('controller.editing', controller.editing);
+    controller.newField = angular.copy(person);
+    console.log(controller.newField);
+  };
+
 //****************************GET GUEST***********************************//
   controller.getGuest= function(guestId){
     console.log(guestId);
@@ -11,25 +20,13 @@ function GuestController(GuestFactory, $stateParams, $state) {
       GuestFactory.getGuest(guestId).then(
         function success(success) {
           controller.guestDetails = success.data;
-          // initialiseUpdatedGuest(success.data.guest);
-
         },
         function error(error) {
-          console.warn('Error getting course:', error.message);
+          console.warn('Error getting guest:', error.message);
         }
       );
     }
   };
-
-
-  // function initialiseUpdatedGuest(currentGuest) {
-  //   controller.updatedGuest = {};
-  //   console.log(controller.updatedGuest);
-  //   // controller.updatedGuest.id = currentGuest.id;
-  //   controller.updatedGuest.name = currentGuest.firstName;
-  //   controller.updatedGuest.extraGuests = currentGuest.extraGuests;
-  //   controller.updatedGuest.attendingEvents = currentGuest.attendingEvents;
-  // }
 
 //****************************ADD GUEST***********************************//
 
@@ -50,21 +47,24 @@ function GuestController(GuestFactory, $stateParams, $state) {
     console.log(guestId);
     GuestFactory.deleteGuest(guestId).then(
     function sucess(response) {
+      $state.reload();
       console.log('deleted guest:', response);
     },
     function error(error) {
-      console.warn('Error creating Guest:', error);
+      console.warn('Error deleting guest:', error);
     }
    );
   };
 
-
 //**************************UPDATE GUEST***********************************//
-  controller.updateGuest = function (guestId) {
-    controller.selectedGuest._id = $stateParams.guestId;
-    GuestFactory.updateGuest(controller.selectedGuest, guestId).then(
+  controller.updateGuest = function (guest) {
+    console.log('update reporting for duty sir');
+    controller.updatedGuest = guest;
+    var guestId = guest._id;
+    console.log(guestId, 'HEYOO');
+    GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
       function success() {
-        $state.reload();
+        // $state.reload();
       },
       function error(error) {
         console.warn('Error updating guest:', error);
@@ -72,10 +72,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
     );
   };
 
-  controller.selectGuest = function(guest) {
-    controller.selectedGuest = guest;
-    controller.isEditFormVisible = true;
-  };
+  // controller.selectGuest = function(guest) {
+  //   controller.selectedGuest = guest;
+  //   controller.isEditFormVisible = true;
+  // };
 
   //**************************GUESTBOOK IMAGES***********************************//
 
@@ -124,16 +124,13 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.eventOptions = ['Traditional Wedding', 'White Wedding', 'Both'];
     controller.newGuest = {};
     controller.guests = [];
-    // controller.guestDetails = {};
-    controller.isEditFormVisible = false;
-    controller.images = [
-      'http://www.clker.com/cliparts/E/A/G/s/T/j/wedding-cake-with-topper-md.png',
-      'http://icons.iconarchive.com/icons/icons-land/vista-love/256/Wedding-Car-Back-icon.png',
-      'https://img0.etsystatic.com/108/0/10598554/il_340x270.1017022734_76sg.jpg',
-      'http://www.clker.com/cliparts/b/u/q/6/S/D/groom-hi.png',
-      'http://www.clipartlord.com/wp-content/uploads/2016/07/church14.png'
-    ];
-    controller.randomiseImages();
+    controller.guestDetails = {};
+    controller.updatedGuest = {};
+    // controller.isEditFormVisible = false;
+    // controller.randomiseImages();
+    controller.newField = {};
+    controller.editing = false;
+
 
 
 //**************************ALL GUEST*********************************//
