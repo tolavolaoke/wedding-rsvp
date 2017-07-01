@@ -2,14 +2,31 @@
 
 <!-- <div ng-init="guests.getSingleUser()"> -->
 <div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
-    <div class="container">
-      <h2 class="guestbook-title">Admin</h2>
+  <div class="container">
 
-<button type="button" name="button" class="btn btn-info btn-md" ng-click="isGuestListOpen = !isGuestListOpen">Guest List <span class="glyphicon glyphicon-resize-full"></span></button>
-<button type="button" name="button" class="btn btn-info btn-md">Check List<span class="glyphicon glyphicon-resize-full"></span></button>
-<button type="button" name="button" class="btn btn-info btn-md">Gallery<span class="glyphicon glyphicon-resize-full"></span></button>
+<h2 class="guestbook-title">Admin</h2>
 
-      <table class="table table hover" ng-show="isGuestListOpen">
+<button type="button"
+        name="button"
+        class="btn btn-info btn-md"
+        ng-click="isGuestListOpen = !isGuestListOpen">Guest List
+        <span class="glyphicon glyphicon-resize-full"></span>
+</button>
+<!-- <button type="button" name="button" class="btn btn-info btn-md">Check List<span class="glyphicon glyphicon-resize-full"></span></button>
+<button type="button" name="button" class="btn btn-info btn-md">Gallery<span class="glyphicon glyphicon-resize-full"></span></button> -->
+
+<div ng-show="isGuestListOpen">
+
+
+    <div class="row">
+      <div class="col-xs-6">
+        <input class="form-control" ng-model="search" type="text" placeholder="Search Guest" >
+      </div>
+    </div>
+
+
+
+      <table class="table table hover" >
         <thead class="tableHead">
           <tr>
             <th>No.</th>
@@ -23,83 +40,92 @@
           </tr>
         </thead>
 
-        <tbody>
-              <form  ng-init="guest.getGuest(guest.newField._id)" > {{guest.newField}}
+  <tbody>
+
+    <tr ng-repeat="person in guest.guests track by $index">
+      <td>{{ $index + 1 }} </td>
+
+      <td ng-hide="editMode">{{ person.firstName}} {{ person.lastName}}</td>
+        <td ng-show="editMode">
+          <input
+            type="text"
+            ng-value="person.firstName"
+            ng-modal="guest.updatedGuest.firstName"/> {{updatedGuest.firstName}}
+          <input
+            type="text"
+            ng-model="guest.updatedGuest.lastName"
+            ng-value="person.lastName"/>
+        </td>
+
+        <td>
+          <span class="glyphicon glyphicon-envelope"></span>
+          <span class="glyphicon glyphicon-phone"></span>
+        </td>
+
+      <td ng-hide="editMode" class="admin-attending-events">{{ person.attendingEvents}}</td>
+        <td ng-show="editMode">
+            <select >
+              <option
+                ng-model="guest.updatedGuest.attendingEvents"
+                ng-repeat="event in guest.eventOptions"
+                ng-selected="event"
+                ng-value="event">{{ event }}
+              </option>
+            </select>
+        </td>
 
 
-          <tr ng-repeat="person in guest.guests track by $index">
+      <td ng-hide="editMode">{{ person.extraGuests}}</td>
+        <td>
+          <select ng-show="editMode">
+            <option value="">0</option>
+            <option
+              ng-model="guest.updatedGuest.extraGuests"
+              ng-repeat="option in guest.extraGuestsOptions"
+              ng-value="option ">{{ option }}
+            </option>
+          </select>
+        </td>
 
-            <td>{{ $index + 1 }} </td>
+        <td>
+          <button
+            type="submit"
+            class="btn btn-default"
+            ng-hide="editMode"
+            ng-click="editMode = true; guest.editGuest(person._id)">
+          <span class="glyphicon glyphicon-pencil"></span>
+          </button>
 
+          <button
+            type="button"
+            class="btn btn-success"
+            ng-show="editMode"
+            ng-click="guest.updateGuest(person)">Save
+         </button>
 
-            <td ng-hide="editMode">{{ person.firstName}} {{ person.lastName}}</td>
-            <td ng-show="editMode" ng-init="guest.getGuest(person._id)">
-              <input
-                type="text"
-                ng-value="person.firstName"
-                ng-modal="guest.updatedGuest.firstName"/>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-show="editMode"
+            ng-click="editMode = false">Undo
+          </button>
 
+             <button
+               type="button"
+               class="close"
+               aria-label="Close"
+               ng-hide="editMode"
+               ng-click="guest.deleteGuest(person._id)">
+             <span aria-hidden="true">&times;</span>
+            </button>
+        </td>
+    </tr>
 
-              <input
+  </tbody>
+  </table>
+</div>
 
-                type="text"
-                ng-value="person.lastName"/>
-            </td>
-
-            <td>
-              <span class="glyphicon glyphicon-envelope"></span>
-              <span class="glyphicon glyphicon-phone"></span>
-            </td>
-
-            <td ng-hide="editMode" class="admin-attending-events" >{{ person.attendingEvents}}</td>
-            <td ng-show="editMode">
-                <select >
-
-                  <option
-                    ng-repeat="event in guest.eventOptions"
-                    ng-selected="event"
-                    ng-value="event">{{ event }}
-                  </option>
-                </select>
-            </td>
-
-
-            <td ng-hide="editMode">{{ person.extraGuests}}</td>
-            <td>
-              <select ng-show="editMode">
-                <option value="">0</option>
-                <option
-                  ng-repeat="option in guest.extraGuestsOptions"
-                  ng-value="option ">{{ option }}
-                </option>
-              </select>
-            </td>
-
-
-
-
-            <td>
-              <button type="submit" ng-hide="editMode" ng-click="editMode = true; guest.editGuest(person._id)" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-            <button ng-show="editMode" type="submit" class="btn btn-success" ng-click="guest.updateGuest(person)" value="Update">Save {{guest.newField}}</button>
-            <button ng-show="editMode" type="button" class="btn btn-danger"  ng-click="editMode = false">Undo</button>
-
-               <button type="button" class="close" aria-label="Close" ng-hide="editMode" ng-click="guest.deleteGuest(person._id)">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-            </td>
-
-
-
-          </tr>
-            </form>
-        </tbody>
-
-      </table>
-     </div>
-
-
+ </div>
 </div>
      <!-- ________________guest modal________________ -->
 

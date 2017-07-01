@@ -15,12 +15,11 @@ function getGuest(req, res) {
   console.log('GUESTID',guestId);
   console.log(req.params);
 
-
-  Guest.findOne({ _id: guestId}, function(err, guests){
+  Guest.findOne({ _id: guestId}, function(err, guest){
     if (err) {
       return res.json(err,'could not retrieve this guest');
     } else {
-      return res.status(200).json(guests);
+      return res.status(200).json(guest);
     }
   });
 }

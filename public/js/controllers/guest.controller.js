@@ -5,11 +5,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
   controller.editGuest = function(person) {
-    console.log('Im here');
     controller.editing = controller.guests.indexOf(person);
-    console.log('controller.editing', controller.editing);
     controller.newField = angular.copy(person);
-    console.log(controller.newField);
   };
 
 //****************************GET GUEST***********************************//
@@ -45,14 +42,15 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
   controller.deleteGuest = function(guestId) {
     console.log(guestId);
+
     GuestFactory.deleteGuest(guestId).then(
-    function sucess(response) {
-      $state.reload();
-      console.log('deleted guest:', response);
-    },
-    function error(error) {
-      console.warn('Error deleting guest:', error);
-    }
+      function sucess(response) {
+        $state.reload();
+        console.log('deleted guest:', response);
+      },
+      function error(error) {
+        console.warn('Error deleting guest:', error);
+      }
    );
   };
 
@@ -61,10 +59,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
     console.log('update reporting for duty sir');
     controller.updatedGuest = guest;
     var guestId = guest._id;
-    console.log(guestId, 'HEYOO');
+
     GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
       function success() {
-        // $state.reload();
+        $state.reload();
       },
       function error(error) {
         console.warn('Error updating guest:', error);
@@ -72,10 +70,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
     );
   };
 
-  // controller.selectGuest = function(guest) {
-  //   controller.selectedGuest = guest;
-  //   controller.isEditFormVisible = true;
-  // };
+
 
   //**************************GUESTBOOK IMAGES***********************************//
 
