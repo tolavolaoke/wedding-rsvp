@@ -12,17 +12,26 @@
         ng-click="isGuestListOpen = !isGuestListOpen">Guest List
         <span class="glyphicon glyphicon-resize-full"></span>
 </button>
-<!-- <button type="button" name="button" class="btn btn-info btn-md">Check List<span class="glyphicon glyphicon-resize-full"></span></button>
-<button type="button" name="button" class="btn btn-info btn-md">Gallery<span class="glyphicon glyphicon-resize-full"></span></button> -->
 
 <div ng-show="isGuestListOpen">
 
 
-    <div class="row">
-      <div class="col-xs-6">
-        <input class="form-control" ng-model="searchBox" type="text" placeholder="Search Guest" >
+    <div class="row searchbar-div">
+      <div class="col-xs-6 ">
+
+              <input type="text"
+                     class="form-control"
+                     ng-model="searchBox.firstName"
+                     placeholder="Search Guest"/>
       </div>
+
+              <button
+                type="button"
+                class="btn btn-success"> Add Guest
+             </button>
     </div>
+
+
 
 
 
@@ -30,11 +39,11 @@
         <thead class="tableHead">
           <tr>
             <th>No.</th>
-            <th>Name</th>
+            <th>Names<i class="fa fa-sort"  ng-click="guest.orderBy('firstName')"></i></th>
             <th>Contact</th>
 
-            <th>Attending Events </th>
-            <th>+ Guests</th>
+            <th>Attending Events<i class="fa fa-sort" ng-click="guest.orderBy('attendingEvents')"></i></th>
+            <th>+ Guests<i class="fa fa-sort" ng-click="guest.orderBy('extraGuests')"></i></th>
             <th>Actions</th>
             <th></th>
           </tr>
@@ -43,8 +52,8 @@
   <tbody>
 
 
-    <tr ng-repeat="person in guest.guests | filter:searchBox |orderBy:orderByField:reverseSor track by $index">
-      <td>{{ $index + 1 }} </td>
+    <tr ng-repeat="person in guest.guests | filter:searchBox | orderBy: guest.headerSort track by $index">
+      <td>{{ $index + 1 }}  </td>
 
       <td ng-hide="editMode" >{{ person.firstName}} {{ person.lastName}}</td>
         <td ng-show="editMode">
@@ -78,7 +87,7 @@
       <td ng-hide="editMode">{{ person.extraGuests}}</td>
         <td ng-show="editMode">
           <select  ng-model="guest.updatedGuest.extraGuests">
-            <option value="">0</option>
+            <option value="0">0</option>
             <option
               ng-repeat="option in guest.extraGuestsOptions"
               ng-value="option ">{{ option }}
@@ -127,55 +136,3 @@
 
  </div>
 </div>
-     <!-- ________________guest modal________________ -->
-
-
-      <!-- <div ng-if="guest.isEditFormVisible">
-
-        <h1>Edit Guest</h1>
-
-        <div>
-
-        firstName
-          <form ng-submit="guest.updateGuest(guest.selectedGuest._id)" ng-init="guest.getGuest(guest.selectedGuest._id)" >
-            <input
-              type="text"
-              ng-value="guest.selectedGuest.firstName"
-              ng-model="guest.selectedGuest.firstName"/>
-
-        lastName
-            <input
-              type="text"
-              ng-value="guest.selectedGuest.lastName"
-              ng-model="guest.selectedGuest.lastName"/>
-
-        attendingEvents
-            <select ng-model="guest.selectedGuest.attendingEvents">
-              <option
-                ng-repeat="event in guest.eventOptions"
-                ng-selected="event"
-                ng-value="event">{{ event }}
-              </option>
-            </select>
-
-        extraGuests
-            <select
-               ng-model="guest.selectedGuest.extraGuests">
-              <option
-                ng-repeat="option in guest.extraGuestsOptions"
-                ng-value="option ">{{ option }}
-              </option>
-            </select>
-
-            <div>
-              <input type="submit" value="Update">
-            </div>
-
-          </form>
-        </div>
-
-      </div>
-
-  </div> -->
-
-<!-- </div> -->

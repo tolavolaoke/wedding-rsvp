@@ -141,13 +141,18 @@
   font-size: 18px;
 }
 
-
-.btn-lg {
-  width: 40%;
+.searchbar-div {
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
+
 
 .glyphicon-resize-full {
   padding-left: 7px;
+}
+
+.fa-sort {
+  padding-left: 5px;
 }
 .glyphicon-envelope {
   color: gray;
@@ -157,9 +162,6 @@
   color: gray;
 }
 
-.filterBy {
-  height: 2%;
-  width: 2%;
-}
+
 
 /*==============================Edit==============================*/

@@ -3,7 +3,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
   var controller = this;
 
 
-
   controller.editGuest = function(personId) {
     controller.editingId = personId;
   };
@@ -23,6 +22,22 @@ function GuestController(GuestFactory, $stateParams, $state) {
       );
     }
   };
+
+
+
+  controller.getAll = function() {
+    GuestFactory.getAll($stateParams).then(
+      function success (response) {
+        controller.guests = response.data;
+        console.log('Got guests', controller.guests);
+      },
+      function err(err) {
+        console.warn('Could not get guests', err);
+      }
+     );
+  };
+
+
 
 //****************************ADD GUEST***********************************//
 
@@ -71,52 +86,15 @@ function GuestController(GuestFactory, $stateParams, $state) {
   };
 
 
+  //**************************ORDER BY HEADERS***********************************//
 
-  //**************************GUESTBOOK IMAGES***********************************//
-
-  controller.randomiseImages = function() {
-    // for(var i = 0; i < controller.images.length; i++) {
-    //   return controller.images[i];
-    // }
-    var currentIndex = controller.images.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-    // And swap it with the current element.
-      temporaryValue = controller.images[currentIndex];
-      controller.images[currentIndex] = controller.images[randomIndex];
-      controller.images[randomIndex] = temporaryValue;
+  controller.orderBy = function(header) {
+    if(controller.headerSort === header) {
+      controller.headerSort = '-' + header;
+    } else {
+      controller.headerSort = header;
     }
-    return controller.images;
   };
-
-
-
-
-  controller.getAll = function() {
-    GuestFactory.getAll($stateParams).then(
-      function success (response) {
-        controller.guests = response.data;
-        console.log('Got guests', controller.guests);
-      },
-      function err(err) {
-        console.warn('Could not get guests', err);
-      }
-     );
-  };
-
-
-.filter('startFrom', function(){
-    return function(data, start) {
-      start = 0 + start;
-      return data.slice(start);
-    };
-  });
 
 
 
@@ -128,15 +106,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.guests = [];
     controller.guestDetails = {};
     controller.updatedGuest = {};
-    // controller.isEditFormVisible = false;
-    // controller.randomiseImages();
-    controller.newField = {};
-    controller.editing = false;
-
-
 
 //**************************ALL GUEST*********************************//
-
 
   }
   init();
