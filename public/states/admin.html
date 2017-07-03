@@ -30,11 +30,11 @@
         <thead class="tableHead">
           <tr>
             <th>No.</th>
-            <th>Name <img src="https://image.flaticon.com/icons/png/512/25/25756.png"  alt="Filter by first name" class="filterBy"/></th>
+            <th>Name</th>
             <th>Contact</th>
 
             <th>Attending Events </th>
-            <th>+ Guests <img src="https://image.flaticon.com/icons/png/512/25/25756.png" alt="Filter by first name" class="filterBy"/></th>
+            <th>+ Guests</th>
             <th>Actions</th>
             <th></th>
           </tr>
@@ -65,9 +65,8 @@
 
       <td ng-hide="editMode" class="admin-attending-events">{{ person.attendingEvents}}</td>
         <td ng-show="editMode">
-            <select >
+            <select ng-model="guest.updatedGuest.attendingEvents">
               <option
-                ng-model="guest.updatedGuest.attendingEvents"
                 ng-repeat="event in guest.eventOptions"
                 ng-selected="event"
                 ng-value="event">{{ event }}
@@ -77,11 +76,10 @@
 
 
       <td ng-hide="editMode">{{ person.extraGuests}}</td>
-        <td>
-          <select ng-show="editMode">
+        <td ng-show="editMode">
+          <select  ng-model="guest.updatedGuest.extraGuests">
             <option value="">0</option>
             <option
-              ng-model="guest.updatedGuest.extraGuests"
               ng-repeat="option in guest.extraGuestsOptions"
               ng-value="option ">{{ option }}
             </option>
@@ -130,6 +128,7 @@
  </div>
 </div>
      <!-- ________________guest modal________________ -->
+
 
       <!-- <div ng-if="guest.isEditFormVisible">
 

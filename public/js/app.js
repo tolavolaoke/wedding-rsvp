@@ -146,6 +146,7 @@ function AuthCatcher($rootScope, $state) {
   });
 }
 
+
 MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 AuthCatcher.$inject = ['$rootScope', '$state'];
 
