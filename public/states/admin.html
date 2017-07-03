@@ -51,7 +51,7 @@
           <input
             type="text"
             ng-value="person.firstName"
-            ng-modal="guest.updatedGuest.firstName"/> {{updatedGuest.firstName}}
+            ng-model="guest.updatedGuest.firstName"/> {{updatedGuest.firstName}}
           <input
             type="text"
             ng-model="guest.updatedGuest.lastName"
@@ -101,7 +101,7 @@
             type="button"
             class="btn btn-success"
             ng-show="editMode"
-            ng-click="guest.updateGuest(person)">Save
+            ng-click="guest.updateGuest(guest.updatedGuest)">Save
          </button>
 
           <button

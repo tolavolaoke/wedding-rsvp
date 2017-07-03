@@ -4,9 +4,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
 
-  controller.editGuest = function(person) {
-    controller.editing = controller.guests.indexOf(person);
-    controller.newField = angular.copy(person);
+  controller.editGuest = function(personId) {
+    controller.editingId = personId;
   };
 
 //****************************GET GUEST***********************************//
@@ -56,9 +55,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 //**************************UPDATE GUEST***********************************//
   controller.updateGuest = function (guest) {
+    console.log(guest);
     console.log('update reporting for duty sir');
     controller.updatedGuest = guest;
-    var guestId = guest._id;
+    var guestId = controller.editingId;
 
     GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
       function success() {
