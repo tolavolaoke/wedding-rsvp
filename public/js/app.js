@@ -77,7 +77,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: '/guestbook',
       views: {
         '': { templateUrl: '../states/guestbook.html' },
-        'navbar@gallery': { templateUrl: '../states/partials/navbar.html' }
+        'navbar@guestbook': { templateUrl: '../states/partials/navbar.html' }
       },
       resolve: {
         currentAuth: [

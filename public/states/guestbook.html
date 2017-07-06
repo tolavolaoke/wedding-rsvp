@@ -1,6 +1,38 @@
 <div ui-view="navbar"></div>
+ <div class="container guestbook-container">
 
+  <div ng-controller = "GuestBookController as post" >
+<!-- ng-init="post.getAll()" -->
+    <form class="form-group"
+          name="guestBookForm"
+          ng-submit="post.AddPost()" >
 
+          <div class="col-xs-2">
+            <label for="ex1"></label>
+              <input type = "text"
+                     class="form-control"
+                     placeholder="Your name"
+                     ng-model="post.newPost.name"
+                     required/>
+          </div>
+
+          <div class="col-xs-2">
+            <label for="ex1"></label>
+              <input type= "text"
+                     class="form-control guestbook-message-input-box"
+                     placeholder="Leave a message"
+                     ng-model="post.newPost.message"
+                     required/>
+          </div>
+
+          <input type="submit"
+                 class="btn btn-success add-guest-submit"
+                 value="Submit"/>
+
+    </form>
+  </div>
+
+ </div>
 
 
 

@@ -1,6 +1,6 @@
-var post = require('../models/guestbook.model');
-
-
-module.exports = {
-
-};
+// var post = require('../models/guestbook.model');
+//
+//
+// module.exports = {
+//
+// };

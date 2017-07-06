@@ -6,9 +6,20 @@ function GuestBookFactory ($http) {
         url: '/guestbook',
         data: newPost
       });
+    },
+    getAllPost: function() {
+      return $http({
+        method: 'GET',
+        url: '/guestbook'
+      });
     }
-  };
 
+
+
+
+
+
+  };
 }
 
 GuestBookFactory.inject = ['$http'];
