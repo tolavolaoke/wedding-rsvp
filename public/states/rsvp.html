@@ -1,45 +1,79 @@
-<div ui-view="navbar"></div>
-
-<h1>RSVP</h1>
-<div ng-controller = "GuestController as guest">
-
-<form name="guestRSVPForm" ng-submit="guest.AddGuest()">
-
-<!--names-->
-<input type = "text" placeholder="Enter first name" ng-model="guest.newGuest.firstName" required/>
-<input type = "text" placeholder="Enter last name" ng-model="guest.newGuest.lastName" required/>
+<!-- <div ui-view="navbar"></div> -->
 
 
-<!--guest-->
-<br>
-<label>Extra Guests:</label>
-<select ng-model="guest.newGuest.extraGuests" ng-options="option for option in guest.extraGuestsOptions">
-  <option value="">0</option>
-</select>
+<div class="container rsvp-container">
 
-<!--events-->
-<br>
-<label>Attending:</label>
-<br>
-<div ng-repeat="event in guest.eventOptions">
-  <input type="radio" ng-model="guest.newGuest.attendingEvents" ng-value="event">{{ event }}
+    <h1 class="rsvp-title">RSVP</h1>
+    <div ng-controller = "GuestController as guest">
+
+      <form class="form-group"
+            name="guestRSVPForm"
+            ng-submit="guest.AddGuest()" >
+
+          <div class="form-group row">
+
+            <!--names-->
+              <div class="col-xs-2">
+                <label for="ex1">First Name:*</label>
+                  <input type = "text"
+                         class="form-control"
+                         placeholder="Enter first name"
+                         ng-model="guest.newGuest.firstName"
+                         required/>
+              </div>
+
+              <div class="col-xs-2">
+                <label for="ex1">Surname:*</label>
+                  <input type= "text"
+                         class="form-control"
+                         placeholder="Enter last name"
+                         ng-model="guest.newGuest.lastName"
+                         required/>
+              </div>
+
+
+            <!--contact details-->
+            <div class="col-xs-3">
+               <label for="ex2">Email:</label>
+                 <input  type="email"
+                         class="form-control" id="ex2"
+                         ng-model="guest.newGuest.email">
+             </div>
+             <div class="col-xs-2">
+               <label for="ex3">No.</label>
+                 <input type="text"
+                        class="form-control" id="ex3"
+                        ng-model="guest.newGuest.number">
+             </div>
+
+
+
+            <!--guest-->
+            <div class="col-xs-1">
+              <label for="ex1">+ Guests*</label>
+                <br>
+                <select class="plus-guest-input-box"
+                        ng-model="guest.newGuest.extraGuests"
+                        ng-options="option for option in guest.extraGuestsOptions" >
+                  <option value="">0</option>
+                </select>
+            </div>
+
+            <div class="col-xs-2">
+              <label for="ex1">Attending:*</label>
+                <div ng-repeat="event in guest.eventOptions">
+                  <input type="radio"
+                         ng-model="guest.newGuest.attendingEvents"
+                         ng-value="event">{{ event }}
+                </div>
+            </div>
+
+
+          <input type="submit" class="btn btn-success add-guest-submit"  value="Submit"/>
+      </div>
+    </form>
+
+  </div>
 </div>
-
-
-
-<!--comment-->
-<br>
-<textarea type = "text"
-          placeholder="Enter your comments here"
-          ng-model="guest.newGuest.comments"
-          id="RSVP_comment_box" required>
-</textarea>
-
-<br>
-<input type="submit" value="submit">
-</form>
-
-</div>
-
 <!--condense all the event info into angular for instance if we make an event controller-->
 <!--Get rid of all of the BR tags and structure properly-->

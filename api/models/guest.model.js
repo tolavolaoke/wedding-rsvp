@@ -19,7 +19,11 @@ const GuestSchema = Schema({
     type: String,
     required: [true, 'This field is required']
   },
-  comments: {
+  email: {
+    type: String,
+    required: false
+  },
+  number: {
     type: String,
     required: false
   }

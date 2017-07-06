@@ -6,9 +6,28 @@
     font-family: 'Raleway', sans-serif;
 }
 
-#RSVP_comment_box {
-  height: 10vh;
-  width: 20vw;
+.rsvp-container {
+  padding: 0 !important;
+}
+
+.fa-window-close{
+float: right;
+}
+
+.rsvp-title {
+text-align: center;
+color:black;
+height: 5vh;
+opacity: 0.8;
+border: rgba(202, 232, 220, 1.0) solid 5px;
+}
+
+.add-guest-submit {
+  margin-left: 15px;
+}
+
+.plus-guest-input-box {
+  height: 3.4vh!important;
 }
 
 /*==============================GUESTBOOK==============================*/
@@ -162,6 +181,10 @@
   color: gray;
 }
 
-
+.admin-phonenumber {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+}
 
 /*==============================Edit==============================*/

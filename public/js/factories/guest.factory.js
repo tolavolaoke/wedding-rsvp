@@ -38,13 +38,10 @@ function GuestFactory ($http) {
     getAll: function() {
       return $http({
         method: 'GET',
-        url: '/guestbook'
+        url: '/guest'
       });
     }
   };
-
-
-
 
 
 }

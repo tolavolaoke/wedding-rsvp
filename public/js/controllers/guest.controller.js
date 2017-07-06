@@ -3,9 +3,12 @@ function GuestController(GuestFactory, $stateParams, $state) {
   var controller = this;
 
 
+
+
   controller.editGuest = function(personId) {
     controller.editingId = personId;
   };
+
 
 //****************************GET GUEST***********************************//
   controller.getGuest= function(guestId){
@@ -97,7 +100,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
   };
 
 
-
 //**************************INITIALISE***********************************//
   function init() {
     controller.extraGuestsOptions = [1 , 2];
@@ -106,8 +108,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.guests = [];
     controller.guestDetails = {};
     controller.updatedGuest = {};
-
-//**************************ALL GUEST*********************************//
 
   }
   init();

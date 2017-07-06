@@ -6,33 +6,37 @@
 
 <h2 class="guestbook-title">Admin</h2>
 
-<button type="button"
-        name="button"
-        class="btn btn-info btn-md"
-        ng-click="isGuestListOpen = !isGuestListOpen">Guest List
-        <span class="glyphicon glyphicon-resize-full"></span>
-</button>
-
-<div ng-show="isGuestListOpen">
+        <!-- <button type="button"
+                name="button"
+                class="btn btn-info btn-md">Guest List
+                <span class="glyphicon glyphicon-resize-full"></span>
+        </button> -->
 
 
     <div class="row searchbar-div">
       <div class="col-xs-6 ">
-
-              <input type="text"
-                     class="form-control"
-                     ng-model="searchBox.firstName"
-                     placeholder="Search Guest"/>
+        <input type="text"
+               class="form-control"
+               ng-model="searchBox.firstName"
+               placeholder="Search Guest"/>
       </div>
-
-              <button
-                type="button"
-                class="btn btn-success"> Add Guest
-             </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            ng-click="isAddGuestOpen = !isAddGuestOpen" ng-hide="isAddGuestOpen"> Add Guest
+         </button>
     </div>
 
 
+      <i class="fa fa-window-close"
+         ng-show="isAddGuestOpen"
+         ng-click="isAddGuestOpen = false" >
+     </i>
 
+    <div ui-view="addGuest"
+         ng-show="isAddGuestOpen"
+         class="addGuest">
+    </div>
 
 
       <table class="table table hover" >
@@ -49,10 +53,12 @@
           </tr>
         </thead>
 
+
   <tbody>
 
 
-    <tr ng-repeat="person in guest.guests | filter:searchBox | orderBy: guest.headerSort track by $index">
+  <tr ng-repeat="person in guest.guests | filter:searchBox | orderBy: guest.headerSort track by $index ">
+
       <td>{{ $index + 1 }}  </td>
 
       <td ng-hide="editMode" >{{ person.firstName}} {{ person.lastName}}</td>
@@ -60,7 +66,8 @@
           <input
             type="text"
             ng-value="person.firstName"
-            ng-model="guest.updatedGuest.firstName"/> {{updatedGuest.firstName}}
+            ng-model="guest.updatedGuest.firstName"/>
+
           <input
             type="text"
             ng-model="guest.updatedGuest.lastName"
@@ -68,8 +75,12 @@
         </td>
 
         <td>
-          <span class="glyphicon glyphicon-envelope"></span>
-          <span class="glyphicon glyphicon-phone"></span>
+          <a ng-href="mailto:{{person.email}}" target="_top">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </a>
+            <span class="glyphicon glyphicon-phone" ng-click="isPhoneNumberShowing = !isPhoneNumberShowing">
+              <p ng-show="isPhoneNumberShowing" class="admin-phonenumber">{{person.number}}</p>
+            </span>
         </td>
 
       <td ng-hide="editMode" class="admin-attending-events">{{ person.attendingEvents}}</td>
@@ -127,12 +138,12 @@
              <span aria-hidden="true">&times;</span>
             </button>
         </td>
+
     </tr>
 
   </tbody>
   </table>
 
-</div>
 
  </div>
 </div>
