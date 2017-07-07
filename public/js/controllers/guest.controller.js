@@ -5,8 +5,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
 
-  controller.editGuest = function(personId) {
-    controller.editingId = personId;
+  controller.editGuest = function(person) {
+    controller.updatedGuest = person;
   };
 
 
@@ -26,12 +26,17 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   };
 
+  controller.changePage = function(page) {
+    controller.upper = page * 10;
+    controller.lower = (page - 1) * 10;
+  };
 
 
   controller.getAll = function() {
     GuestFactory.getAll($stateParams).then(
       function success (response) {
         controller.guests = response.data;
+        createPagesArray(controller.guests);
         console.log('Got guests', controller.guests);
       },
       function err(err) {
@@ -72,13 +77,12 @@ function GuestController(GuestFactory, $stateParams, $state) {
   };
 
 //**************************UPDATE GUEST***********************************//
-  controller.updateGuest = function (guest) {
-    console.log(guest);
+  controller.updateGuest = function (updatedGuest) {
+    console.log(updatedGuest);
     console.log('update reporting for duty sir');
-    controller.updatedGuest = guest;
-    var guestId = controller.editingId;
+    var guestId = updatedGuest._id;
 
-    GuestFactory.updateGuest(controller.updatedGuest, guestId).then(
+    GuestFactory.updateGuest(updatedGuest, guestId).then(
       function success() {
         $state.reload();
       },
@@ -99,6 +103,25 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   };
 
+  controller.changePage = function(page) {
+    controller.lower = (page * 10) - 10;
+    controller.upper = page * 10;
+    controller.enableEdit();
+  };
+
+  controller.disableEdit = function() {
+    controller.isEditDisabled = true;
+  };
+  controller.enableEdit = function() {
+    controller.isEditDisabled = false;
+  };
+
+  function createPagesArray(guests) {
+    var pages = Math.ceil(guests.length/10);
+    for(var i = 1; i <= pages; i++) {
+      controller.pageNumbers.push(i);
+    }
+  }
 
 //**************************INITIALISE***********************************//
   function init() {
@@ -107,7 +130,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.newGuest = {};
     controller.guests = [];
     controller.guestDetails = {};
-    controller.updatedGuest = {};
+    controller.pageNumbers = [];
+    controller.lower = 0;
+    controller.upper = 10;
+    controller.isEditDisabled = false;
 
   }
   init();
