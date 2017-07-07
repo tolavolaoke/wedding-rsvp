@@ -31,7 +31,6 @@
                          required/>
               </div>
 
-
             <!--contact details-->
             <div class="col-xs-3">
                <label for="ex2">Email:</label>
@@ -46,15 +45,13 @@
                         ng-model="guest.newGuest.number">
              </div>
 
-
-
             <!--guest-->
             <div class="col-xs-1">
               <label for="ex1">+ Guests*</label>
                 <br>
                 <select class="plus-guest-input-box"
                         ng-model="guest.newGuest.extraGuests"
-                        ng-options="option for option in guest.extraGuestsOptions" >
+                        ng-options="option for option in guest.extraGuestsOptions">
                   <option value="">0</option>
                 </select>
             </div>
@@ -68,12 +65,12 @@
                 </div>
             </div>
 
-
-          <input type="submit" class="btn btn-success add-guest-submit"  value="Submit"/>
+          <!--submit-->
+          <input type="submit"
+                 class="btn btn-success add-guest-submit"
+                 value="Submit"/>
       </div>
     </form>
 
   </div>
 </div>
-<!--condense all the event info into angular for instance if we make an event controller-->
-<!--Get rid of all of the BR tags and structure properly-->

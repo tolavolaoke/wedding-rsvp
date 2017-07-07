@@ -49,41 +49,31 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
   margin-top: 10%;
 }
 
-
-.guestbook-title {
-  text-align: center;
-  padding-bottom: 20px;
-  color:	#D5AD6D; /*if no support for background-clip*/
-
- background:
- -webkit-linear-gradient(transparent, transparent),
- -webkit-linear-gradient(top, rgba(213,173,109,1) 0%, rgba(213,173,109,1) 26%, rgba(226,186,120,1) 35%, rgba(163,126,67,1) 45%, rgba(145,112,59,1) 51%, rgba(213,173,109,1) 100%);
- background:
- -o-linear-gradient(transparent, transparent);
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
+.guestbook-message-input-box {
+  width: 20vw;
+  height: 20vh;
 }
+
 
 .comment-section{
     list-style: none;
     width: 50%;
+    height: 30vh;
     justify-content: center;
     float: left;
     padding: 30px;
     padding-bottom: 0px;
     margin-bottom: 0px;
     display: inline-block;
+    border: dotted gray 1px;
 }
 
-.guestBookList {
-  border-bottom: lightgray  dashed 1px;
-}
 
 .guest-img {
   width: 10%;
   height: 10%;
   border: 1px lightgray solid;
-  margin-right: 5%;
+  margin-right: 3%;
   border-radius: 30px;
   display: inline-flex;
 }
@@ -95,10 +85,11 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
     display: inline-block;
     vertical-align:middle;
 }
+
 .guestBookComments {
     display: block;
     text-transform: capitalize;
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: 14%;
     vertical-align:middle;
     display: flex;
@@ -109,7 +100,9 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
     color: #808080;
 }
 
-
+.guestbooklist-item{
+  padding-left:4%;
+}
 
 
 /* Responsive styles */

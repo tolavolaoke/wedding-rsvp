@@ -14,6 +14,7 @@ function GuestBookController(GuestBookFactory, $stateParams) {
   };
 
   controller.getAllPost = function() {
+    console.log('getallPosts triggered');
     GuestBookFactory.getAllPost($stateParams).then(
       function success (response) {
         controller.posts= response.data;

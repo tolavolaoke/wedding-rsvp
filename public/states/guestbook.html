@@ -1,38 +1,56 @@
 <div ui-view="navbar"></div>
- <div class="container guestbook-container">
+ <!-- <div class="container guestbook-container"> -->
 
-  <div ng-controller = "GuestBookController as post" >
-<!-- ng-init="post.getAll()" -->
-    <form class="form-group"
+  <div ng-controller = "GuestBookController as post" ng-init="post.getAllPost()">
+
+    <!-- <form class="form-group"
           name="guestBookForm"
-          ng-submit="post.AddPost()" >
+          ng-submit="post.addPost()" >
+              <div class="col-xs-2">
+                  <input type = "text"
+                         class="form-control"
+                         placeholder="Your name"
+                         ng-model="post.newPost.name"
+                         required/>
+              </div>
 
-          <div class="col-xs-2">
-            <label for="ex1"></label>
-              <input type = "text"
-                     class="form-control"
-                     placeholder="Your name"
-                     ng-model="post.newPost.name"
-                     required/>
-          </div>
+              <div class="col-xs-2">
+                <textarea class="form-control"
+                          rows="5" id="comment"
+                          placeholder="Leave a message..."
+                          ng-model="post.newPost.message"
+                          ></textarea>
+              </div>
 
-          <div class="col-xs-2">
-            <label for="ex1"></label>
-              <input type= "text"
-                     class="form-control guestbook-message-input-box"
-                     placeholder="Leave a message"
-                     ng-model="post.newPost.message"
-                     required/>
-          </div>
+            <div class="col-xs-2">
+              <input type="submit"
+                     class="btn btn-success add-guest-submit"
+                     value="submit"/>
+            </div>
+    </form> -->
 
-          <input type="submit"
-                 class="btn btn-success add-guest-submit"
-                 value="Submit"/>
+    <div class="container">
+          <ul ng-repeat="p in post.posts track by $index" class="comment-section list-group row">
+            <li class="guestbooklist-item">
+                <img class="guest-img" ng-src="https://www.fancyhands.com/images/default-avatar-250x250.png"/>
 
-    </form>
+                <div class="guestBookNames">
+                  {{p.name}}
+               </div>
+
+                <div class="guestBookComments">
+                  {{p.message}}
+                </div>
+          </li>
+
+          </ul>
+    </div>
+
+
+
   </div>
 
- </div>
+
 
 
 
