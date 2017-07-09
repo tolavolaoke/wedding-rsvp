@@ -151,6 +151,6 @@ MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 AuthCatcher.$inject = ['$rootScope', '$state'];
 
 angular
-  .module('wedding-rsvp', ['ui.router','firebase'])
+  .module('wedding-rsvp', ['ui.router','firebase', 'ngFileUpload'])
   .config(MainRouter)
   .run(AuthCatcher);
