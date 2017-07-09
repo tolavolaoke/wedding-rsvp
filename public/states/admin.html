@@ -163,7 +163,7 @@
 
 <div ng-controller="S3Controller as s3">
   <h1>Upload</h1>
-  <form ng-submit="s3.uploadImage()">
+  <form ng-submit="s3.uploadImages()">
     <input type="button"
            ngf-select
            ng-model="s3.images"
@@ -177,6 +177,6 @@
          ng-model="s3.images"
          ngf-multiple="true"
          id="drop-box">Drop Images</div>
-    <button type="submit">Submit</button>
+    <button type="submit" ng-disabled="!s3.images">Submit</button>
   </form>
 </div>
