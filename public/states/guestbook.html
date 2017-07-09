@@ -1,10 +1,19 @@
 <div ui-view="navbar"></div>
- <!-- <div class="container guestbook-container"> -->
+
+<div class="container">
+
+
+ <button type="button"
+         class="btn btn-primary"
+         ng-click="isGuestBookCommentOpen = !isGuestBookCommentOpen">Leave a message
+
+ </button>
 
   <div ng-controller = "GuestBookController as post" ng-init="post.getAllPost()">
 
-    <!-- <form class="form-group"
+    <form class="form-group"
           name="guestBookForm"
+          ng-show="isGuestBookCommentOpen"
           ng-submit="post.addPost()" >
               <div class="col-xs-2">
                   <input type = "text"
@@ -14,7 +23,7 @@
                          required/>
               </div>
 
-              <div class="col-xs-2">
+              <div class="col-xs-3">
                 <textarea class="form-control"
                           rows="5" id="comment"
                           placeholder="Leave a message..."
@@ -27,19 +36,26 @@
                      class="btn btn-success add-guest-submit"
                      value="submit"/>
             </div>
-    </form> -->
+    </form>
 
     <div class="container">
           <ul ng-repeat="p in post.posts track by $index" class="comment-section list-group row">
             <li class="guestbooklist-item">
-                <img class="guest-img" ng-src="https://www.fancyhands.com/images/default-avatar-250x250.png"/>
 
-                <div class="guestBookNames">
-                  {{p.name}}
-               </div>
+              <div ng-repeat="image in post.shufflearr">
+                <img class="guest-img"
+                     ng-src="{{image}}"/>
+              </div>
+
+
+                <div class="guestBookNames">{{p.name}}
+                <p class="timestamp"> {{ p.timestamp | date : " MMM dd,yy HH:mm" : "+0100" }}</p>
+                </div>
+
+
 
                 <div class="guestBookComments">
-                  {{p.message}}
+                  {{p.message}} {{p.shuffle()}}
                 </div>
           </li>
 
@@ -51,41 +67,19 @@
   </div>
 
 
+    <!-- <div>
 
+      <ul class="comment-section list-group row" ng-repeat="peas in guest.guests track by $index" >
+        <li class="guestBookList">
+        <img class="guest-img" ng-src="{{guest.images[$index]}}"/>
 
+               <div class="guestBookNames">
+                {{ peas.firstName }} {{peas.lastName}}
+              </div>
+               <div class="guestBookComments">{{ peas.comments }} </div>
 
+        </li>
+      </ul>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div ng-controller = "GuestBookController as post" ng-init="post.getAll()">
-
-<div class="container">
-  <h1 class="guestbook-title">GuestBook</h1>
-  <ul class="comment-section list-group row" ng-repeat="peas in guest.guests track by $index" >
-    <li class="guestBookList">
-    <img class="guest-img" ng-src="{{guest.images[$index]}}"/>
-
-           <div class="guestBookNames">
-            {{ peas.firstName }} {{peas.lastName}}
-          </div>
-           <div class="guestBookComments">{{ peas.comments }} </div>
-
-    </li>
-  </ul>
-
- </div>
-</div> -->
+    </div> -->
+</div>

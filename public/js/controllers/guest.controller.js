@@ -123,6 +123,9 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   }
 
+
+
+
 //**************************INITIALISE***********************************//
   function init() {
     controller.extraGuestsOptions = [1 , 2];

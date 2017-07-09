@@ -14,18 +14,23 @@
 
 
     <div class="row searchbar-div">
-      <div class="col-xs-4 ">
+      <div class="col-xs-3 searchbar-div-child ">
         <input type="text"
-               class="form-control"
+               class="form-control searchbar"
                ng-model="searchBox.firstName"
                placeholder="Search Guest"/>
-      </div>
+</div>
+               <button class="btn btn-default search-icon">
+                  <span class="glyphicon glyphicon-search"></span>
+            </button>
+
+
           <button
             type="button"
             class="btn btn-success"
             ng-click="isAddGuestOpen = !isAddGuestOpen" ng-hide="isAddGuestOpen"> Add Guest
          </button>
-    </div>
+      </div>
 
 
       <i class="fa fa-window-close"
@@ -62,7 +67,7 @@
 
       <td>{{ $index + 1 }}  </td>
 
-      <td ng-hide="editMode" >{{ person.firstName}} {{ person.lastName}}</td>
+      <td ng-hide="editMode" class="names" >{{ person.firstName}} {{ person.lastName}}</td>
         <td ng-show="editMode">
           <input
             type="text"

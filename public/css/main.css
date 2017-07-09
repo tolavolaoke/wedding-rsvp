@@ -54,6 +54,10 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
   height: 20vh;
 }
 
+.timestamp {
+  color: gray;
+  font-size: 10px;
+}
 
 .comment-section{
     list-style: none;
@@ -165,8 +169,6 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
 /*==============================Admin Home==============================*/
 
 
-
-
 .tableHead {
   font-weight: bold;
   font-size: 18px;
@@ -175,8 +177,27 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
 .searchbar-div {
   padding-bottom: 15px;
   padding-top: 15px;
+  margin-right: 0;
+}
+.searchbar-div-child {
+  margin-right: 0;
+  padding-right: 0;
 }
 
+.searchbar {
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
+.search-icon {
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  background-color: lightgray;
+}
+
+.names{
+  text-transform: capitalize;
+}
 
 .glyphicon-resize-full {
   padding-left: 7px;

@@ -1,6 +1,12 @@
 var Post = require('../models/guestbook.model');
+var moment = require('moment');
 
 function createPost(req, res) {
+  var date = moment();
+  var time = date.format('D MMM YY, hh:mm');
+  req.body['timestamp']= time;
+  console.log('timestamp');
+  console.log(req.body);
   Post.create(req.body, function (err) {
     if(err) {
       return res.json(err, 'could not retrive this post');

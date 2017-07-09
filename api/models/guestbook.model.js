@@ -9,6 +9,9 @@ const GuestbookSchema = Schema({
   message: {
     type: String,
     required: true
+  },
+  timestamp: {
+    type: Date
   }
 
 });
