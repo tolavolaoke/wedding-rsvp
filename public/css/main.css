@@ -199,4 +199,16 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
   font-size: 20px;
 }
 
+.pagination {
+  background-color: white;
+  border: 1px gray solid;
+  padding: 8px 16px;
+}
+
+.pagination-div {
+  display: inline;
+  text-align: center;
+}
+
+
 /*==============================Edit==============================*/

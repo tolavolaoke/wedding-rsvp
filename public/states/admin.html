@@ -14,7 +14,7 @@
 
 
     <div class="row searchbar-div">
-      <div class="col-xs-6 ">
+      <div class="col-xs-4 ">
         <input type="text"
                class="form-control"
                ng-model="searchBox.firstName"
@@ -147,16 +147,21 @@
   </tbody>
   </table>
 
-  <div
-    ng-repeat="page in guest.pageNumbers"
-    style="display: inline; text-align: center">
-    <button
-      ng-click="guest.changePage(page)"
-      ng-disabled="guest.upper === page * 10"
-      style="width: 50px">{{ page }}
-    </button>
-  </div>
 
+    <div class="col-md-offset-5">
+      <div
+        ng-repeat="page in guest.pageNumbers"
+        class="pagination-div">
+
+            <button
+              class="pagination"
+              ng-click="guest.changePage(page)"
+              ng-disabled="guest.upper === page * 10"
+              style="width: 50px">{{ page }}
+            </button>
+
+      </div>
+    </div>
 
  </div>
 </div>
