@@ -54,24 +54,25 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
   height: 20vh;
 }
 
-.timestamp {
-  color: gray;
-  font-size: 10px;
-}
 
 .comment-section{
     list-style: none;
-    width: 50%;
+    width: 40%;
     height: 30vh;
     justify-content: center;
     float: left;
+    margin: 2%;
     padding: 30px;
     padding-bottom: 0px;
     margin-bottom: 0px;
     display: inline-block;
-    border: dotted gray 1px;
+    border-bottom: dashed lightgray 1px;
 }
 
+.timestamp {
+  color: gray;
+  font-size: 10px;
+}
 
 .guest-img {
   width: 10%;

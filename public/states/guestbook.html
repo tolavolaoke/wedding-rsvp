@@ -42,12 +42,6 @@
           <ul ng-repeat="p in post.posts track by $index" class="comment-section list-group row">
             <li class="guestbooklist-item">
 
-              <div ng-repeat="image in post.shufflearr">
-                <img class="guest-img"
-                     ng-src="{{image}}"/>
-              </div>
-
-
                 <div class="guestBookNames">{{p.name}}
                 <p class="timestamp"> {{ p.timestamp | date : " MMM dd,yy HH:mm" : "+0100" }}</p>
                 </div>
@@ -67,19 +61,4 @@
   </div>
 
 
-    <!-- <div>
-
-      <ul class="comment-section list-group row" ng-repeat="peas in guest.guests track by $index" >
-        <li class="guestBookList">
-        <img class="guest-img" ng-src="{{guest.images[$index]}}"/>
-
-               <div class="guestBookNames">
-                {{ peas.firstName }} {{peas.lastName}}
-              </div>
-               <div class="guestBookComments">{{ peas.comments }} </div>
-
-        </li>
-      </ul>
-
-    </div> -->
 </div>

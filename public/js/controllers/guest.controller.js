@@ -125,6 +125,12 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
 
 
+  controller.openModal= function(person) {
+    controller.modalShown = !controller.modalShown;
+    console.log(person);
+    controller.deletingPerson = person;
+  };
+
 
 //**************************INITIALISE***********************************//
   function init() {

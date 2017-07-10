@@ -137,20 +137,37 @@
             ng-click="editMode = false; guest.enableEdit()">Undo
           </button>
 
-             <button
-               type="button"
-               class="close"
-               aria-label="Close"
-               ng-hide="editMode"
-               ng-click="guest.deleteGuest(person._id)">
-             <span aria-hidden="true">&times;</span>
-            </button>
+           <button
+             type="button"
+             class="close"
+             aria-label="Close"
+             ng-hide="editMode"
+             ng-click="guest.openModal(person)">
+           <span aria-hidden="true">&times;</span>
+          </button>
         </td>
 
     </tr>
 
   </tbody>
   </table>
+
+          <div ng-show="guest.modalShown">
+                    <p>Are you sure you want to delete {{guest.deletingPerson.firstName}} {{guest.deletingPerson.lastName}}?</p>
+                        <button
+                          class="btn btn-default delete-person-button"
+                          ng-click = "guest.deleteGuest(guest.deletingPerson._id)">Delete
+                        </button>
+                        <button
+                          class="btn btn-danger delete-person-button"
+                          ng-click= "guest.modalShown = false">Cancel
+                      </button>
+            </div>
+
+
+
+
+
 
 
     <div class="col-md-offset-5">
