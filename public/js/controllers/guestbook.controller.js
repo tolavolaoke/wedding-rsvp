@@ -28,38 +28,9 @@ function GuestBookController(GuestBookFactory, $stateParams) {
   };
 
 
-  function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
-
-
-
-
-
-
   function init(){
     controller.newPost = {};
     controller.posts = [];
-    controller.arr = [
-      'http://ulatbambu.com/images/tux-clip-art-16.png',
-      'https://s-media-cache-ak0.pinimg.com/736x/89/ea/36/89ea36a4ff52c1500db77ca81aea482b--car-magnets-wedding-pictures.jpg',
-      'https://bellabridesmaids.com/wp-content/uploads/2017/02/unspecified-1.png'];
-    controller.shufflearr = shuffle(controller.arr);
   }
 
   init();
