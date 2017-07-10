@@ -30,6 +30,7 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
   height: 3.4vh!important;
 }
 
+
 /*==============================GUESTBOOK==============================*/
 
 .center-div {
@@ -95,7 +96,6 @@ border: rgba(202, 232, 220, 1.0) solid 5px;
     display: block;
     text-transform: capitalize;
     margin-top: 4%;
-    margin-left: 14%;
     vertical-align:middle;
     display: flex;
     width: 70%;
