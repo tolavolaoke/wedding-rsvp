@@ -1,0 +1,64 @@
+<div ui-view="navbar"></div>
+
+<div class="container">
+
+
+ <button type="button"
+         class="btn btn-primary"
+         ng-click="isGuestBookCommentOpen = !isGuestBookCommentOpen">Leave a message
+
+ </button>
+
+  <div ng-controller = "GuestBookController as post" ng-init="post.getAllPost()">
+
+    <form class="form-group"
+          name="guestBookForm"
+          ng-show="isGuestBookCommentOpen"
+          ng-submit="post.addPost()" >
+              <div class="col-xs-2">
+                  <input type = "text"
+                         class="form-control"
+                         placeholder="Your name"
+                         ng-model="post.newPost.name"
+                         required/>
+              </div>
+
+              <div class="col-xs-3">
+                <textarea class="form-control"
+                          rows="5" id="comment"
+                          placeholder="Leave a message..."
+                          ng-model="post.newPost.message"
+                          ></textarea>
+              </div>
+
+            <div class="col-xs-2">
+              <input type="submit"
+                     class="btn btn-success add-guest-submit"
+                     value="submit"/>
+            </div>
+    </form>
+
+    <div class="container">
+          <ul ng-repeat="p in post.posts track by $index" class="comment-section list-group row">
+            <li class="guestbooklist-item">
+
+                <div class="guestBookNames">{{p.name}}
+                <p class="timestamp"> {{ p.timestamp | date : " MMM dd,yy HH:mm" : "+0100" }}</p>
+                </div>
+
+
+
+                <div class="guestBookComments">
+                  {{p.message}} {{p.shuffle()}}
+                </div>
+          </li>
+
+          </ul>
+    </div>
+
+
+
+  </div>
+
+
+</div>
