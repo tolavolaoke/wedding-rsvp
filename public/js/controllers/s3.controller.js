@@ -21,9 +21,20 @@ function S3Controller(S3Factory) {
 
   function uploadToBucket(file, signedRequest) {
     // Here we make the XHR request to s3 to upload the images
+    console.log('helooooo', file);
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.send(file);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          controller.background = `https://s3.amazonaws.com/wedding-rsvp-app-photos/${file.name}`;
+          console.log('uploaded image', controller.background);
+        } else {
+          console.log('Could not upload file.');
+        }
+      }
+    };
   }
 
   function init() {
