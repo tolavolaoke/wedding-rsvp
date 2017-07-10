@@ -16,7 +16,6 @@ mongoose.connect(MONGODB_URI, function (err) {
   console.log('Connected to database:', mongoose.connection.name);
 });
 
-
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 app.use(bodyParser.json());

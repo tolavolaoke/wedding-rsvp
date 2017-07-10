@@ -4,17 +4,14 @@ function S3Controller(S3Factory) {
   controller.uploadImages = function() {
     controller.imagesArray = controller.images.map(function(image) {
       return {
-        'file-name': image.name,
-        'file-type': image.type
+        name: image.name,
+        type: image.type
       };
     });
-    S3Factory.getSignedRequests(controller.imagesArray).then(
+    S3Factory.getSignedRequests(controller.imagesArray[0]).then(
       function success(success) {
         console.log('Successfully got signed requests', success.data);
-        for(var i = 0; i < controller.images.length; i++) {
-          uploadToBucket(controller.images[i], success.data[i].signedRequest, success.data[i].url);
-        }
-
+        uploadToBucket(controller.images[0], success.data.signedRequest, success.data.url);
       },
       function error(error) {
         console.warn('Error getting signed requests', error);
@@ -22,9 +19,11 @@ function S3Controller(S3Factory) {
     );
   };
 
-  function uploadToBucket(file, signedRequest, url) {
+  function uploadToBucket(file, signedRequest) {
     // Here we make the XHR request to s3 to upload the images
-    console.log(file, signedRequest, url);
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.send(file);
   }
 
   function init() {

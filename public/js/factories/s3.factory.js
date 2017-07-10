@@ -1,11 +1,9 @@
 function S3Factory($http) {
   return {
-    getSignedRequests: function(images) {
-      console.log('images object in factory', images);
+    getSignedRequests: function(file) {
       return $http({
-        method: 'POST',
-        url: '/images',
-        data: images
+        method: 'GET',
+        url: `/sign-s3?file-name=${file.name}&file-type=${file.type}`
       });
     }
   };
