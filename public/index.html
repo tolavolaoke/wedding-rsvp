@@ -2,10 +2,14 @@
 <html ng-app="wedding-rsvp">
   <head>
     <meta charset="utf-8">
-    <title>Wedding RSVP</title>
+
+    <title>Wedding</title>
+
 
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="angular/angular.min.js" charset="utf-8"></script>
     <script src="@uirouter/angularjs/release/angular-ui-router.min.js" charset="utf-8"></script>
@@ -13,10 +17,13 @@
     <script src="//cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
     <script src="./js/factories/auth.factory.js"></script>
+    <script src="./js/factories/guest.factory.js"></script>
+    <script src="./js/factories/guestbook.factory.js"></script>
     <script src="./js/controllers/auth.controller.js" charset="utf-8"></script>
-    <script src="js/factories/guest.factory.js"></script>
-    <script src="js/controllers/guest.controller.js"></script>
+    <script src="./js/controllers/guest.controller.js" charset="utf-8"></script>
+    <script src="./js/controllers/guestbook.controller.js" charset="utf-8"></script>
   </head>
+
 
   <body ng-controller="AuthController as auth">
     <section ui-view class="section-container">
