@@ -8,6 +8,22 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         'navbar@login': { templateUrl: '../states/partials/navbar.html' }
       }
     })
+    .state('admin', {
+      url: '/admin',
+      views: {
+        '': { templateUrl: '../states/admin.html' },
+        'navbar@admin': { templateUrl: '../states/partials/navbar.html' },
+        'addGuest@admin': { templateUrl: '../states/rsvp.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
+    })
     .state('auth-required', {
       url: '/authrequired',
       templateUrl: '../states/auth-required.html'
@@ -47,6 +63,21 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: '../states/gallery.html' },
         'navbar@gallery': { templateUrl: '../states/partials/navbar.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
+    })
+    .state('guestbook', {
+      url: '/guestbook',
+      views: {
+        '': { templateUrl: '../states/guestbook.html' },
+        'navbar@guestbook': { templateUrl: '../states/partials/navbar.html' }
       },
       resolve: {
         currentAuth: [
@@ -104,6 +135,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     });
 
   $urlRouterProvider.otherwise('/login');
+
 }
 
 function AuthCatcher($rootScope, $state) {
@@ -113,6 +145,7 @@ function AuthCatcher($rootScope, $state) {
     }
   });
 }
+
 
 MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 AuthCatcher.$inject = ['$rootScope', '$state'];

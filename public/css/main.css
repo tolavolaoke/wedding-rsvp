@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
 
 *{
+
   font-family: 'Open Sans', sans-serif;
-  color: blue;
 }
 
 div {
@@ -173,4 +173,237 @@ display: list-item;
 
 .submitbtn:hover{
   background-color: darkorange;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
+
+.rsvp-container {
+  padding: 0 !important;
+}
+
+.fa-window-close{
+float: right;
+}
+
+.rsvp-title {
+text-align: center;
+color:black;
+height: 5vh;
+opacity: 0.8;
+border: rgba(202, 232, 220, 1.0) solid 5px;
+}
+
+.add-guest-submit {
+  margin-left: 15px;
+}
+
+.plus-guest-input-box {
+  height: 3.4vh!important;
+}
+
+
+/*==============================GUESTBOOK==============================*/
+
+.center-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  height: 100px;
+  border-radius: 3px;
+}
+
+
+.guestbook-container {
+  margin-top: 10%;
+}
+
+.guestbook-message-input-box {
+  width: 20vw;
+  height: 20vh;
+}
+
+
+.comment-section{
+    list-style: none;
+    width: 40%;
+    height: 30vh;
+    justify-content: center;
+    float: left;
+    margin: 2%;
+    padding: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    border-bottom: dashed lightgray 1px;
+}
+
+.timestamp {
+  color: gray;
+  font-size: 10px;
+}
+
+.guest-img {
+  width: 10%;
+  height: 10%;
+  border: 1px lightgray solid;
+  margin-right: 3%;
+  border-radius: 30px;
+  display: inline-flex;
+}
+
+.guestBookNames {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align:middle;
+}
+
+.guestBookComments {
+    display: block;
+    text-transform: capitalize;
+    margin-top: 4%;
+    vertical-align:middle;
+    display: flex;
+    width: 70%;
+    border-radius: 3px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+    color: #808080;
+}
+
+.guestbooklist-item{
+  padding-left:4%;
+}
+
+
+/* Responsive styles */
+
+@media (max-width: 800px){
+    /* Make the paragraph in the comments take up the whole width,
+    forcing the avatar and user info to wrap to the next line*/
+    .comment p{
+        width: 100%;
+    }
+
+    /* Reverse the order of elements in the user comments,
+    so that the avatar and info appear after the text. */
+    .comment.user-comment .info{
+        order: 3;
+        text-align: left;
+    }
+
+    .comment.user-comment .avatar{
+        order: 2;
+    }
+
+    .comment.user-comment p{
+        order: 1;
+    }
+
+
+    /* Align toward the beginning of the container (to the left)
+    all the elements inside the author comments. */
+    .comment-section{
+        margin-top: 10px;
+    }
+
+    .comment .info{
+        width: auto;
+    }
+
+    .comment .info a{
+        padding-top: 15px;
+    }
+
+    .comment.user-comment .avatar{
+        padding: 15px 10px 0 18px;
+        width: auto;
+    }
+
+    .comment.user-comment p:after{
+        width: 12px;
+        height: 12px;
+        top: initial;
+        left: 28px;
+        bottom: -6px;
+    }
+
+    .write-new{
+        width: 100%;
+    }
+}
+
+/*==============================Admin Home==============================*/
+
+
+.tableHead {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.searchbar-div {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-right: 0;
+}
+.searchbar-div-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.searchbar {
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
+.search-icon {
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  background-color: lightgray;
+}
+
+.names{
+  text-transform: capitalize;
+}
+
+.glyphicon-resize-full {
+  padding-left: 7px;
+}
+
+.fa-sort {
+  padding-left: 5px;
+}
+.glyphicon-envelope {
+  color: gray;
+  padding: 3px;
+}
+.glyphicon-phone {
+  color: gray;
+}
+
+.admin-phonenumber {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+}
+
+.pagination {
+  background-color: white;
+  border: 1px gray solid;
+  padding: 8px 16px;
+}
+
+.pagination-div {
+  display: inline;
+  text-align: center;
+}
+
+
+/*==============================Edit==============================*/

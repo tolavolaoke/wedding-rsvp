@@ -12,13 +12,18 @@ const GuestSchema = Schema({
   },
   extraGuests: {
     type: Number,
-    required: [true, 'This field is required']
+    required: [true, 'This field is required'],
+    default: 0
   },
   attendingEvents: {
     type: String,
     required: [true, 'This field is required']
   },
-  comments: {
+  email: {
+    type: String,
+    required: false
+  },
+  number: {
     type: String,
     required: false
   }
