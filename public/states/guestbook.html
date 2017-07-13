@@ -70,7 +70,7 @@
       </form>
 
       <div class="container">
-        <ul ng-repeat="p in post.posts track by $index" class="comment-section list-group row">
+        <ul ng-repeat="p in post.posts | orderBy:'timestamp': true track by $index" class="comment-section list-group row">
           <li class="guestbooklist-item">
 
               <div class="guestBookNames">{{p.name}}
