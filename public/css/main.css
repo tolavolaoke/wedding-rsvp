@@ -245,13 +245,11 @@ margin-top: 5%;
 .comment-section{
     list-style: none;
     width: 40%;
-    height: 30vh;
+    height: 25vh;
     justify-content: center;
     float: left;
     margin: 2%;
     padding: 30px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
     display: inline-block;
     border-bottom: dashed lightgray 1px;
 }
@@ -286,7 +284,7 @@ margin-top: 5%;
     display: flex;
     width: 70%;
     border-radius: 3px;
-    margin-bottom: 45px;
+    margin-bottom: 5px;
     flex-wrap: wrap;
     color: #808080;
 }
