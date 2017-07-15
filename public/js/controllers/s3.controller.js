@@ -1,12 +1,13 @@
 function S3Controller(S3Factory) {
   var controller = this;
 
+  // Get a signed request from aws s3 using the aws-sdk in the back-end
   controller.uploadImages = function() {
-    controller.images.forEach(function(image) {
-      S3Factory.getSignedRequests(image).then(
+    controller.images.forEach(function(file) {
+      S3Factory.getSignedRequests(file).then(
         function success(success) {
           console.log('Successfully got signed requests', success.data);
-          uploadToBucket(image, success.data.signedRequest);
+          uploadToBucket(file, success.data.signedRequest);
         },
         function error(error) {
           console.warn('Error getting signed requests', error);
@@ -15,8 +16,8 @@ function S3Controller(S3Factory) {
     });
   };
 
+  // Using the signed request returned from the back-end, make XHR request to s3 to upload the files
   function uploadToBucket(file, signedRequest) {
-    // Here we make the XHR request to s3 to upload the images
     console.log(signedRequest);
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -33,10 +34,6 @@ function S3Controller(S3Factory) {
     };
   }
 
-  function init() {
-    controller.imagesArray = [];
-  }
-  init();
 }
 
 S3Controller.$inject = ['S3Factory'];

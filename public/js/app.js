@@ -13,7 +13,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: '../states/admin.html' },
         'navbar@admin': { templateUrl: '../states/partials/navbar.html' },
-        'addGuest@admin': { templateUrl: '../states/rsvp.html' }
+        'addGuest@admin': { templateUrl: '../states/rsvp.html' },
+        'upload@admin': { templateUrl: '../states/partials/upload.html' }
       },
       resolve: {
         currentAuth: [
