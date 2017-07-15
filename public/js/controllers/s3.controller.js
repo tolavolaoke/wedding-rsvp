@@ -7,7 +7,7 @@ function S3Controller(S3Factory) {
       S3Factory.getSignedRequests(file).then(
         function success(success) {
           console.log('Successfully got signed requests', success.data);
-          uploadToBucket(file, success.data.signedRequest);
+          uploadToBucket(file, success.data.signedRequest, success.data.url);
         },
         function error(error) {
           console.warn('Error getting signed requests', error);
@@ -17,7 +17,7 @@ function S3Controller(S3Factory) {
   };
 
   // Using the signed request returned from the back-end, make XHR request to s3 to upload the files
-  function uploadToBucket(file, signedRequest) {
+  function uploadToBucket(file, signedRequest, url) {
     console.log(signedRequest);
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -25,7 +25,7 @@ function S3Controller(S3Factory) {
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          controller.background = `https://s3.amazonaws.com/wedding-rsvp-app-photos/${file.name}`;
+          controller.background = url;
           console.log('uploaded image', controller.background);
         } else {
           console.log('Could not upload file.');
