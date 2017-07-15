@@ -1,20 +1,32 @@
 <div ng-controller="S3Controller as s3">
   <h1>Upload</h1>
-  <form ng-submit="s3.uploadImages()">
-    <input type="button"
-           ngf-select
-           ng-model="s3.images"
-           ngf-multiple="true"
-           value="Select Images"
-           id="upload">
-           <div ng-repeat="image in s3.images">
-             {{ image.name }}
-           </div>
-    <div ngf-drop
-         ng-model="s3.images"
-         ngf-multiple="true"
-         id="drop-box">Drop Images
-    </div>
+  <div class="button"
+       ngf-select="s3.uploadImages()"
+       ng-model="s3.images"
+       ngf-multiple="true"
+       value="Select Images"
+       id="upload">Select Files
+  </div>
+  <div ng-repeat="image in s3.images">
+    {{ image.name }}
+  </div>
+
+  <div ngf-drop="s3.uploadImages()"
+       id="drop-box"
+       class="drop-box"
+       ng-model="s3.images"
+       ngf-drag-over-class="'dragover'"
+       ngf-multiple="true"
+       ng-style="s3.dropboxStyle"
+       ngf-pattern="'image/*,application/pdf'">Drop Images here
+  </div>
+  <form>
+    <input type="text" placeholder="Upload comment">
     <button type="submit" ng-disabled="!s3.images">Submit</button>
   </form>
+
+  <div ng-repeat="image in s3.images">
+    <img ng-src="{{image.url}}" alt="thumbnail">
+  </div>
+
 </div>

@@ -3,7 +3,7 @@ const S3_BUCKET = process.env.S3_BUCKET;
 
 function getSignedRequests(req, res) {
   const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
+  const fileName = req.query['file-name'].replace(/\s+/g, '');
   const fileType = req.query['file-type'];
   const s3Params = {
     Bucket: S3_BUCKET,

@@ -6,8 +6,17 @@ function S3Controller(S3Factory) {
     controller.images.forEach(function(file) {
       S3Factory.getSignedRequests(file).then(
         function success(success) {
-          console.log('Successfully got signed requests', success.data);
-          uploadToBucket(file, success.data.signedRequest, success.data.url);
+          const signedRequest = success.data.signedRequest;
+          file.url = success.data.url;
+
+          uploadToBucket(file, signedRequest).then(
+            function(url) {
+              console.log('url from promise return', url);
+              console.log(controller.images);
+            }).catch(
+              function(error) {
+                console.warn(error);
+              });
         },
         function error(error) {
           console.warn('Error getting signed requests', error);
@@ -17,22 +26,28 @@ function S3Controller(S3Factory) {
   };
 
   // Using the signed request returned from the back-end, make XHR request to s3 to upload the files
-  function uploadToBucket(file, signedRequest, url) {
-    console.log(signedRequest);
-    var xhr = new XMLHttpRequest();
-    xhr.open('PUT', signedRequest);
-    xhr.send(file);
-    xhr.onreadystatechange = function() {
-      if(xhr.readyState === 4){
+  function uploadToBucket(file, signedRequest) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', signedRequest);
+      xhr.onload = function() {
         if(xhr.status === 200){
-          controller.background = url;
-          console.log('uploaded image', controller.background);
+          resolve(file.url);
         } else {
-          console.log('Could not upload file.');
+          reject(xhr.statusText);
         }
-      }
-    };
+      };
+      xhr.onerror = function() {
+        reject(xhr.statusText);
+      };
+      xhr.send(file);
+    });
   }
+
+
+  function init() {
+  }
+  init();
 
 }
 
