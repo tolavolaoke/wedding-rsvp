@@ -52,6 +52,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
   controller.AddGuest = function() {
     GuestFactory.createGuest(controller.newGuest).then(
             function sucess(response) {
+              $state.reload();
               console.log('Created new Guest:', response);
             },
             function error(error) {
@@ -122,6 +123,19 @@ function GuestController(GuestFactory, $stateParams, $state) {
       controller.pageNumbers.push(i);
     }
   }
+
+
+
+  controller.openModal= function(person) {
+    controller.modalShown = !controller.modalShown;
+    console.log(person);
+    controller.deletingPerson = person;
+  };
+
+
+  controller.confirmGuest = function() {
+    controller.addGuestModal = !controller.addGuestModal;
+  };
 
 //**************************INITIALISE***********************************//
   function init() {

@@ -1,10 +1,11 @@
-function GuestBookController(GuestBookFactory, $stateParams) {
+function GuestBookController(GuestBookFactory, $stateParams, $state) {
   var controller = this;
 
   controller.addPost = function(){
     console.log('im here');
     GuestBookFactory.createPost(controller.newPost).then(
         function success(response) {
+          $state.reload();
           console.log('Created new post', response);
         },
         function error(err) {
@@ -14,8 +15,10 @@ function GuestBookController(GuestBookFactory, $stateParams) {
   };
 
   controller.getAllPost = function() {
+    console.log('getallPosts triggered');
     GuestBookFactory.getAllPost($stateParams).then(
       function success (response) {
+        console.log(response);
         controller.posts= response.data;
         console.log('Got posts', controller.posts);
       },
@@ -23,6 +26,13 @@ function GuestBookController(GuestBookFactory, $stateParams) {
         console.warn('Could not get posts', err);
       }
      );
+  };
+
+  controller.openGuestbookForm = function() {
+    controller.guestbookForm = !controller.guestbookForm;
+  };
+  controller.confirmGuestbookMessage = function() {
+    controller.guestbookMessageOpen = !controller.guestbookMessageOpen ;
   };
 
 
@@ -35,7 +45,7 @@ function GuestBookController(GuestBookFactory, $stateParams) {
 
 }
 
-GuestBookController.$inject = ['GuestBookFactory', '$stateParams'];
+GuestBookController.$inject = ['GuestBookFactory', '$stateParams', '$state'];
 
 angular
 .module('wedding-rsvp')
