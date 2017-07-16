@@ -18,15 +18,16 @@
        ngf-drag-over-class="'dragover'"
        ngf-multiple="true"
        ng-style="s3.dropboxStyle"
-       ngf-pattern="'image/*,application/pdf'">Drop Images here
+       ngf-pattern="'image/*'">Drop Images here
   </div>
   <form>
+    <div ng-repeat="image in s3.images track by $index">
+      <img id="{{s3.previews[$index]}}" alt="thumbnail" style="height: 100px; width: 100px; display: inline">
+    </div>
     <input type="text" placeholder="Upload comment">
     <button type="submit" ng-disabled="!s3.images">Submit</button>
   </form>
 
-  <div ng-repeat="image in s3.images">
-    <img ng-src="{{image.url}}" alt="thumbnail">
-  </div>
+
 
 </div>
