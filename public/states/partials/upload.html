@@ -1,31 +1,32 @@
 <div ng-controller="S3Controller as s3">
   <h1>Upload</h1>
-  <div class="button"
-       ngf-select="s3.uploadImages()"
-       ng-model="s3.images"
-       ngf-multiple="true"
-       value="Select Images"
-       id="upload">Select Files
-  </div>
-  <div ng-repeat="image in s3.images">
-    {{ image.name }}
-  </div>
 
-  <div ngf-drop="s3.uploadImages()"
-       id="drop-box"
-       class="drop-box"
-       ng-model="s3.images"
-       ngf-drag-over-class="'dragover'"
-       ngf-multiple="true"
-       ng-style="s3.dropboxStyle"
-       ngf-pattern="'image/*'">Drop Images here
-  </div>
-  <form>
-    <div ng-repeat="image in s3.images track by $index">
-      <img id="{{s3.previews[$index]}}" alt="thumbnail" style="height: 100px; width: 100px; display: inline">
+  <form ng-submit="s3.uploadImages()">
+    <div class="button"
+         ngf-select
+         ng-model="s3.images"
+         ngf-multiple="true"
+         ngf-max-files="10"
+         value="Select Images"
+         id="upload">Select Files
     </div>
-    <input type="text" placeholder="Upload comment">
-    <button type="submit" ng-disabled="!s3.images">Submit</button>
+    <p>Maximum 20 files</p>
+    <div id="drop-box"
+         ngf-drop
+         class="drop-box"
+         ng-model="s3.images"
+         ngf-multiple="true"
+         ngf-max-files="20"
+         ngf-pattern="'image/*'">Drop Images here
+    </div>
+    <div ng-repeat="image in s3.images track by $index">
+      <img
+        ngf-src="image"
+        ngf-background="image"
+        ngf-resize="{width: 200, height: 200, quality: 0.9}"
+        ngf-no-object-url="true or false">
+    </div>
+    <button type="submit" ng-disabled="!s3.images">Upload</button>
   </form>
 
 

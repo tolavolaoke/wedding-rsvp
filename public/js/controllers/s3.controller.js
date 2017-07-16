@@ -3,16 +3,12 @@ function S3Controller(S3Factory) {
 
   controller.uploadImages = function() {
     var requestPromises = [];
-    controller.images.forEach(function(file, index) {
-      controller.previews.push(`preview${index}`);
+    controller.images.forEach(function(file) {
       requestPromises.push(uploadToS3(file));
     });
     Promise.all(requestPromises).then(
       function(urls) {
         console.log('uploaded images:', urls);
-        for(var i = 0; i < urls.length; i++) {
-          document.getElementById(`preview${i}`).src = urls[i];          
-        }
       }).catch(
       function(error) {
         console.log(error);
