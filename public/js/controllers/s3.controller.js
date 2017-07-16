@@ -46,12 +46,6 @@ function S3Controller(S3Factory) {
     });
   }
 
-
-  function init() {
-    controller.previews = [];
-  }
-  init();
-
 }
 
 S3Controller.$inject = ['S3Factory'];
