@@ -15,7 +15,8 @@ function getSignedRequests(req, res) {
       return res.end();
     }
     console.log('acquired temporary credentials', data.Credentials);
-    AWS.config.update({
+
+    const S3 = new AWS.S3({
       region: 'eu-west-2',
       credentials: {
         accessKeyId: data.Credentials.AccessKeyId,
@@ -23,8 +24,7 @@ function getSignedRequests(req, res) {
         sessionToken: data.Credentials.SessionToken
       }
     });
-
-    const S3 = new AWS.S3();
+    
     const fileName = req.query['file-name'].replace(/\s+/g, '');
     const fileType = req.query['file-type'];
 
