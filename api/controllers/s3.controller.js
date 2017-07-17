@@ -24,7 +24,7 @@ function getSignedRequests(req, res) {
         sessionToken: data.Credentials.SessionToken
       }
     });
-    
+
     const fileName = req.query['file-name'].replace(/\s+/g, '');
     const fileType = req.query['file-type'];
 

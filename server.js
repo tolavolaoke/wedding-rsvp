@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./api/config/router');
-const s3Router = require('./api/config/s3-router');
+const s3Router = require('./api/config/s3.router');
+const albumRouter = require('./api/config/album.router');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/wedding-project';
 const PORT = process.env.PORT || 3000;
 const morgan = require('morgan');
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(morgan('dev'));
 app.use(router);
 app.use(s3Router);
+app.use(albumRouter);
 console.log('app is listening on port', PORT);
 app.listen(PORT, function(){
 });
