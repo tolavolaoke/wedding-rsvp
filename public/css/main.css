@@ -384,6 +384,12 @@ margin-top: 5%;
   background-size: cover;
 }
 
+.album-photo {
+  height: 200px;
+  width: 350px;
+  margin: 20px;
+}
+
 
 
 

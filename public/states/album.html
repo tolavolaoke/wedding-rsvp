@@ -1,0 +1,7 @@
+<div ui-view="navbar"></div>
+
+<div ng-controller="AlbumController as album" ng-init="album.getAllPhotos()">
+  <div ng-repeat="photo in album.photos">
+    <img ng-src="{{photo.url}}" alt="name of photo" class="album-photo">
+  </div>
+</div>

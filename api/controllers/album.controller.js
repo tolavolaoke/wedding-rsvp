@@ -1,5 +1,15 @@
 var Photo = require('../models/album.model');
 
+function getAllPhotos(req, res) {
+  Photo.find(function(err, photos){
+    if (err) {
+      return res.json(err);
+    } else {
+      return res.status(200).json(photos);
+    }
+  });
+}
+
 function uploadPhotos(req, res) {
   var urls = req.body;
   var requestPromises = [];
@@ -29,8 +39,7 @@ function storePhotoURL(photo) {
   });
 }
 
-
-
 module.exports = {
-  uploadPhotos: uploadPhotos
+  uploadPhotos: uploadPhotos,
+  getAllPhotos: getAllPhotos
 };
