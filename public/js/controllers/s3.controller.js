@@ -1,4 +1,4 @@
-function S3Controller(S3Factory, AlbumFactory) {
+function S3Controller(S3Factory, AlbumFactory, $state) {
   var controller = this;
 
   controller.uploadImages = function() {
@@ -13,6 +13,7 @@ function S3Controller(S3Factory, AlbumFactory) {
         AlbumFactory.uploadPhotoURLs(urls).then(
           function(success) {
             console.log('uploaded image urls to db', success.data);
+            $state.go('album');
           },
           function(error) {
             console.warn('could not upload photo urls to db', error);
@@ -55,7 +56,7 @@ function S3Controller(S3Factory, AlbumFactory) {
   }
 }
 
-S3Controller.$inject = ['S3Factory', 'AlbumFactory'];
+S3Controller.$inject = ['S3Factory', 'AlbumFactory', '$state'];
 
 angular
   .module('wedding-rsvp')

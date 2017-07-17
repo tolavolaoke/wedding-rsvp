@@ -13,8 +13,32 @@ function AlbumController(AlbumFactory) {
     );
   };
 
+  controller.showAlbumView = function(index) {
+    controller.currentPhotoIndex = index;
+    controller.currentPhoto = controller.photos[controller.currentPhotoIndex];
+    controller.albumView = true;
+  };
+
+  controller.nextPhoto = function() {
+    if(controller.currentPhotoIndex === controller.photos.length - 1) {
+      controller.currentPhotoIndex = 0;
+    } else {
+      controller.currentPhotoIndex++;
+    }
+    controller.currentPhoto = controller.photos[controller.currentPhotoIndex];
+  };
+  controller.previousPhoto = function() {
+    if(controller.currentPhotoIndex === 0) {
+      controller.currentPhotoIndex = controller.photos.length - 1;
+    } else {
+      controller.currentPhotoIndex--;
+    }
+    controller.currentPhoto = controller.photos[controller.currentPhotoIndex];
+  };
+
   function init() {
     controller.photos = [];
+    controller.albumView = false;
   }
   init();
 }
