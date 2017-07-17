@@ -7,20 +7,22 @@
          ng-model="s3.images"
          ngf-multiple="true"
          ngf-max-files="10"
+         ngf-pattern="'image/*'"
          value="Select Images"
          id="upload">Select Files
     </div>
-    <p>Maximum 20 files</p>
+    <p>Maximum 10 files</p>
     <div id="drop-box"
          ngf-drop
          class="drop-box"
          ng-model="s3.images"
          ngf-multiple="true"
-         ngf-max-files="20"
+         ngf-max-files="10"
          ngf-pattern="'image/*'">Drop Images here
     </div>
     <div ng-repeat="image in s3.images track by $index">
       <img
+        id="image-preview"
         ngf-src="image"
         ngf-background="image"
         ngf-resize="{width: 200, height: 200, quality: 0.9}"

@@ -2,6 +2,7 @@ function S3Controller(S3Factory) {
   var controller = this;
 
   controller.uploadImages = function() {
+    console.log(controller.images);
     var requestPromises = [];
     controller.images.forEach(function(file) {
       requestPromises.push(uploadToS3(file));
@@ -11,20 +12,19 @@ function S3Controller(S3Factory) {
         console.log('uploaded images:', urls);
       }).catch(
       function(error) {
-        console.log(error);
+        console.warn(error);
       });
   };
 
-  // Get a signed request from aws s3 using the aws-sdk in the back-end
-  // Using the signed request returned from the back-end, make XHR request to s3 to upload the files
   function uploadToS3(file) {
     return new Promise(function(resolve, reject) {
+      // Get a signed request from aws s3 using the aws-sdk in the back-end
       S3Factory.getSignedRequests(file).then(
-        function success(success) {
+        function(success) {
           const url = success.data.url;
           const signedRequest = success.data.signedRequest;
-          console.log(signedRequest);
-
+          console.log('url of photo:', url);
+          // Using the signed request returned from the back-end, make XHR request to s3 to upload the files
           var xhr = new XMLHttpRequest();
           xhr.open('PUT', signedRequest);
           xhr.onload = function() {
@@ -39,13 +39,12 @@ function S3Controller(S3Factory) {
           };
           xhr.send(file);
         },
-        function error(error) {
+        function(error) {
           reject(error);
         }
         );
     });
   }
-
 }
 
 S3Controller.$inject = ['S3Factory'];
