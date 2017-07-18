@@ -4,21 +4,9 @@ function AuthController($state, AuthFactory, UserFactory) {
   controller.signIn = () => {
     controller.error = null;
     AuthFactory.$signInWithEmailAndPassword(controller.email, controller.password).then(
-      (user) => {
+      () => {
         resetCredentials();
-        user.getIdToken(true).then(function(idToken) {
-          UserFactory.verifyToken(idToken).then(
-            function(permissions) {
-              console.log('got permissions', permissions);
-              controller.permissions = permissions;
-            },
-            function(err) {
-              console.warn('could not get permissions', err);
-            }
-          );
-        }).catch(function(error) {
-          console.warn('could not get token:', error);
-        });
+        controller.getPermissions();
         $state.go('welcome');
       },
       (error) => {
@@ -27,6 +15,22 @@ function AuthController($state, AuthFactory, UserFactory) {
         resetCredentials();
       }
     );
+  };
+
+  controller.getPermissions = function() {
+    AuthFactory.$getAuth().getIdToken(true).then(function(idToken) {
+      UserFactory.getPermissions(idToken).then(
+        function(permissions) {
+          console.log('got permissions', permissions);
+          controller.permissions = permissions;
+        },
+        function(err) {
+          console.warn('could not get permissions', err);
+        }
+      );
+    }).catch(function(error) {
+      console.warn('could not get token:', error);
+    });
   };
 
   controller.signOut = () => {

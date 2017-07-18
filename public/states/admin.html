@@ -1,6 +1,7 @@
 <div ui-view="navbar"></div>
 
 <!-- <div ng-init="guests.getSingleUser()"> -->
+<!-- <h1 ng-if="!auth.permissions.admin">You must be logged in as admin to view this page</h1> -->
 <div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
   <div class="container">
 

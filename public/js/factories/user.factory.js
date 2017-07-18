@@ -1,6 +1,6 @@
 function UserFactory($http) {
   return {
-    verifyToken: function(idToken) {
+    getPermissions: function(idToken) {
       return $http({
         method: 'GET',
         url: `/verify/${idToken}`,
