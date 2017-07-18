@@ -6,7 +6,7 @@ function AuthController($state, AuthFactory, UserFactory) {
     AuthFactory.$signInWithEmailAndPassword(controller.email, controller.password).then(
       () => {
         resetCredentials();
-        controller.getPermissions();
+        controller.isAdmin = false;
         $state.go('welcome');
       },
       (error) => {
@@ -20,9 +20,9 @@ function AuthController($state, AuthFactory, UserFactory) {
   controller.getPermissions = function() {
     AuthFactory.$getAuth().getIdToken(true).then(function(idToken) {
       UserFactory.getPermissions(idToken).then(
-        function(permissions) {
-          console.log('got permissions', permissions);
-          controller.permissions = permissions;
+        function(success) {
+          console.log(success.data);
+          controller.isAdmin = success.data.isAdmin;
         },
         function(err) {
           console.warn('could not get permissions', err);
@@ -49,7 +49,6 @@ function AuthController($state, AuthFactory, UserFactory) {
     controller.email = '';
     controller.password = '';
     AuthFactory.$onAuthStateChanged((user) => {
-      console.log('auth state changed: user:', user);
       controller.user = user;
     });
   }

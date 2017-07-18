@@ -15,14 +15,11 @@ function verifyToken(req, res) {
   admin.auth().verifyIdToken(idToken)
   .then(function(decodedToken) {
     var uid = decodedToken.uid;
-    var permissions = {};
 
     if(uid === ADMIN_UID) {
-      permissions = { admin: true };
-      return res.status(200).json({ message: 'Access granted', permissions });
+      return res.status(200).json({ message: 'Access granted', isAdmin: true });
     } else {
-      permissions = { admin: false };
-      return res.status(401).json({ message: 'Access denied', permissions });
+      return res.status(401).json({ message: 'Access denied', isAdmin: false });
     }
   }).catch(function(error) {
     res.status(400).json(error);
