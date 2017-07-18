@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./api/config/router');
+const userRouter = require('./api/config/user.router');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/wedding-project';
 const PORT = process.env.PORT || 3000;
 const morgan = require('morgan');
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(morgan('dev'));
 app.use(router);
+app.use(userRouter);
 console.log('app is listening on port', PORT);
 app.listen(PORT, function(){
 });

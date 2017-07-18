@@ -1,11 +1,25 @@
-function AuthController($state, AuthFactory) {
+function AuthController($state, AuthFactory, UserFactory) {
   var controller = this;
 
   controller.signIn = () => {
     controller.error = null;
     AuthFactory.$signInWithEmailAndPassword(controller.email, controller.password).then(
-      () => {
+      (user) => {
         resetCredentials();
+        user.getIdToken(true).then(function(idToken) {
+          const token = { idToken };
+          console.log('token', token);
+          UserFactory.verifyToken(token).then(
+            function(permissions) {
+              console.log('got permissions', permissions);
+            },
+            function(err) {
+              console.warn('could not get permissions', err);
+            }
+          );
+        }).catch(function(error) {
+          console.warn('could not get token:', error);
+        });
         $state.go('welcome');
       },
       (error) => {
@@ -39,7 +53,7 @@ function AuthController($state, AuthFactory) {
 
   init();
 }
-AuthController.$inject = ['$state', 'AuthFactory'];
+AuthController.$inject = ['$state', 'AuthFactory', 'UserFactory'];
 
 angular
   .module('wedding-rsvp')
