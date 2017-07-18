@@ -2,8 +2,8 @@ function UserFactory($http) {
   return {
     verifyToken: function(idToken) {
       return $http({
-        method: 'POST',
-        url: '/verify',
+        method: 'GET',
+        url: `/verify/${idToken}`,
         data: idToken
       });
     }

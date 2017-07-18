@@ -7,11 +7,10 @@ function AuthController($state, AuthFactory, UserFactory) {
       (user) => {
         resetCredentials();
         user.getIdToken(true).then(function(idToken) {
-          const token = { idToken };
-          console.log('token', token);
-          UserFactory.verifyToken(token).then(
+          UserFactory.verifyToken(idToken).then(
             function(permissions) {
               console.log('got permissions', permissions);
+              controller.permissions = permissions;
             },
             function(err) {
               console.warn('could not get permissions', err);
