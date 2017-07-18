@@ -3,12 +3,12 @@
 function AuthRun() {
   // Initialize Firebase
   var config = {
-    apiKey: 'AIzaSyDEde69vwrXHzZCfw5gsEcc-nr9kVAZTWM',
-    authDomain: 'wedding-rsvp-yafiimo.firebaseapp.com',
-    databaseURL: 'https://wedding-rsvp-yafiimo.firebaseio.com',
-    projectId: 'wedding-rsvp-yafiimo',
-    storageBucket: 'wedding-rsvp-yafiimo.appspot.com',
-    messagingSenderId: '1063289276260'
+    apiKey: 'AIzaSyBLIOfaBy7go5F1iWcHJrYN54QFl0jRFVY',
+    authDomain: 'wedding-rsvp-41be1.firebaseapp.com',
+    databaseURL: 'https://wedding-rsvp-41be1.firebaseio.com',
+    projectId: 'wedding-rsvp-41be1',
+    storageBucket: 'wedding-rsvp-41be1.appspot.com',
+    messagingSenderId: '795167162923'
   };
   firebase.initializeApp(config);
 }
