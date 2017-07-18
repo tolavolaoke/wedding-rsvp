@@ -13,7 +13,7 @@ function S3Controller(S3Factory, AlbumFactory, $state) {
         AlbumFactory.uploadPhotoURLs(urls).then(
           function(success) {
             console.log('uploaded image urls to db', success.data);
-            $state.go('album');
+            $state.go('gallery');
           },
           function(error) {
             console.warn('could not upload photo urls to db', error);

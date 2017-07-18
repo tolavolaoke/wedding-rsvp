@@ -133,21 +133,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           }
         ]
       }
-    })
-    .state('album', {
-      url: '/album',
-      views: {
-        '': { templateUrl: '../states/album.html' },
-        'navbar@album': { templateUrl: '../states/partials/navbar.html' }
-      },
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
     });
 
   $urlRouterProvider.otherwise('/login');
