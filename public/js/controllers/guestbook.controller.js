@@ -15,12 +15,9 @@ function GuestBookController(GuestBookFactory, $stateParams, $state) {
   };
 
   controller.getAllPost = function() {
-    console.log('getallPosts triggered');
     GuestBookFactory.getAllPost($stateParams).then(
       function success (response) {
-        console.log(response);
         controller.posts= response.data;
-        console.log('Got posts', controller.posts);
       },
       function err(err) {
         console.warn('Could not get posts', err);

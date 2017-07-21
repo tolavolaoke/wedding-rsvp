@@ -2,6 +2,7 @@
 
 <!-- <div ng-init="guests.getSingleUser()"> -->
 <div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
+
   <div class="container">
 
 <h2 class="guestbook-title">Admin</h2>
@@ -23,6 +24,10 @@
             class="btn btn-success"
             ng-click="isAddGuestOpen = !isAddGuestOpen" ng-hide="isAddGuestOpen"> Add Guest
          </button>
+
+
+<img src="https://docs.unity3d.com/uploads/Main/TimeToShinePDFDownloadIcon.png" alt="" class="file-conversion">
+<img src="http://www.fornacigrigolin.it/tp/images/pdf-icon.png" alt="" class="file-conversion">
       </div>
 
 
@@ -37,7 +42,7 @@
     </div>
 
 
-      <table class="table table hover" >
+      <table class="table table hover"  id="exportTable">
         <thead class="tableHead">
           <tr>
             <th>No.</th>
@@ -145,7 +150,7 @@
   </tbody>
   </table>
 
-          <div ng-show="guest.modalShown">
+          <div ng-show="guest.modalShown" class="guestbookForm">
                     <p>Are you sure you want to delete {{guest.deletingPerson.firstName}} {{guest.deletingPerson.lastName}}?</p>
                         <button
                           class="btn btn-default delete-person-button"
@@ -156,12 +161,6 @@
                           ng-click= "guest.modalShown = false">Cancel
                       </button>
             </div>
-
-
-
-
-
-
 
     <div class="col-md-offset-5">
       <div

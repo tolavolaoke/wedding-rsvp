@@ -1,14 +1,10 @@
-
 function GuestController(GuestFactory, $stateParams, $state) {
   var controller = this;
-
-
 
 
   controller.editGuest = function(person) {
     controller.updatedGuest = person;
   };
-
 
 //****************************GET GUEST***********************************//
   controller.getGuest= function(guestId){
