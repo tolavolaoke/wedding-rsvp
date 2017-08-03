@@ -23,12 +23,40 @@
             type="button"
             class="btn btn-success"
             ng-click="isAddGuestOpen = !isAddGuestOpen" ng-hide="isAddGuestOpen"> Add Guest
+            <span class="glyphicon glyphicon-user"></span>
          </button>
 
+           <button type="button"
+                   class="btn btn-default">Both
+             <span class="badge">{{guest.bothEventGuestsTotal}}</span>
+           </button>
 
-<img src="https://docs.unity3d.com/uploads/Main/TimeToShinePDFDownloadIcon.png" alt="" class="file-conversion">
-<img src="http://www.fornacigrigolin.it/tp/images/pdf-icon.png" alt="" class="file-conversion">
-      </div>
+            <button type="button"
+                    class="btn btn-default">White
+              <span class="badge">{{guest.whiteWeddingGuestsTotal}}</span>
+            </button>
+
+            <button type="button"
+                    class="btn btn-default">Traditional
+              <span class="badge">{{guest.traditionalGuestsTotal}}</span>
+            </button>
+
+            <button type="button"
+                    class="btn btn-default">Registered
+              <span class="badge">{{guest.countTotalGuests}}</span>
+            </button>
+
+            <button type="button"
+                    class="btn btn-default">+ Guests
+              <span class="badge">{{guest.totalExtraGuests}} </span>
+            </button>
+
+            <button type="button"
+                    class="btn btn-default">Total
+              <span class="badge">{{guest.countTotalGuests + guest.totalExtraGuests}}</span>
+            </button>
+
+</div>
 
 
       <i class="fa fa-window-close"
@@ -40,6 +68,7 @@
          ng-show="isAddGuestOpen"
          class="addGuest">
     </div>
+
 
 
       <table class="table table hover"  id="exportTable">

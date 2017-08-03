@@ -32,6 +32,48 @@ function GuestController(GuestFactory, $stateParams, $state) {
     GuestFactory.getAll($stateParams).then(
       function success (response) {
         controller.guests = response.data;
+
+        controller.countTotalGuests = controller.guests.length;
+
+        controller.totalExtraGuests = controller.guests.reduce(function(sum, guest){
+          return sum += guest.extraGuests;
+        }, 0);
+
+        controller.tradtionalEventGuests = controller.guests.forEach(function(guest){
+          if(guest.attendingEvents === controller.eventOptions[0]){
+            controller.traditionalGuests.push(guest);
+          }
+          var total = controller.traditionalGuests.reduce(function(sum, guest){
+            return sum += guest.extraGuests;
+          }, 0);
+          controller.traditionalGuestsTotal = total + controller.traditionalGuests.length;
+          return controller.traditionalGuestsTotal;
+        });
+
+        controller.whiteWeddingEventGuests = controller.guests.forEach(function(guest){
+          if(guest.attendingEvents === controller.eventOptions[1]){
+            controller.whiteWeddingGuests.push(guest);
+          }
+          var total = controller.whiteWeddingGuests.reduce(function(sum, guest){
+            return sum += guest.extraGuests;
+          }, 0);
+          controller.whiteWeddingGuestsTotal = total + controller.whiteWeddingGuests.length;
+          return controller.whiteWeddingGuestsTotal;
+        });
+
+        controller.bothEvent = controller.guests.forEach(function(guest){
+          if(guest.attendingEvents === controller.eventOptions[2]){
+            controller.bothEventGuests.push(guest);
+          }
+          var total = controller.bothEventGuests.reduce(function(sum, guest){
+            return sum += guest.extraGuests;
+          }, 0);
+          controller.bothEventGuestsTotal = total + controller.bothEventGuests.length;
+          return controller.bothEventGuestsTotal;
+        });
+
+
+
         createPagesArray(controller.guests);
         console.log('Got guests', controller.guests);
       },
@@ -120,8 +162,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   }
 
-
-
   controller.openModal= function(person) {
     controller.modalShown = !controller.modalShown;
     console.log(person);
@@ -132,6 +172,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
   controller.confirmGuest = function() {
     controller.addGuestModal = !controller.addGuestModal;
   };
+
 
 //**************************INITIALISE***********************************//
   function init() {
@@ -144,7 +185,9 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.lower = 0;
     controller.upper = 10;
     controller.isEditDisabled = false;
-
+    controller.traditionalGuests = [];
+    controller.whiteWeddingGuests = [];
+    controller.bothEventGuests = [];
   }
   init();
 }
