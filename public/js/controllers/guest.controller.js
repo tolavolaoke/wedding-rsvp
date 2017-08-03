@@ -142,6 +142,14 @@ function GuestController(GuestFactory, $stateParams, $state) {
     }
   };
 
+  controller.filterBy = function(eventFilter) {
+    if(controller.eventFilter === eventFilter) {
+      controller.eventFilter = '';
+    } else {
+      controller.eventFilter = eventFilter;
+    }
+  };
+
   controller.changePage = function(page) {
     controller.lower = (page * 10) - 10;
     controller.upper = page * 10;
