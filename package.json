@@ -9,6 +9,7 @@
     "angular-smart-table": "^2.1.8",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "firebase-admin": "^5.0.1",
     "moment": "^2.18.1",
