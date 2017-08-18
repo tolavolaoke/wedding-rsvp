@@ -103,7 +103,7 @@ input[type=password]:focus::-webkit-input-placeholder {
 }
 
 /*NAVIGATION BAR*/
-.nav{
+/*.nav{
   border: 2px solid gold;
   background-color: gold;
   padding: 20px;
@@ -119,7 +119,7 @@ input[type=password]:focus::-webkit-input-placeholder {
   background-color: white;
   color: gold;
   border: 2px solid white;
-}
+}*/
 
 /*RSVP*/
 .guestinput{

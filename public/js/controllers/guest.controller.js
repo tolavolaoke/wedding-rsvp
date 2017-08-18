@@ -33,6 +33,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
       function success (response) {
         controller.guests = response.data;
 
+        //STAT BOXES
+
         controller.countTotalGuests = controller.guests.length;
 
         controller.totalExtraGuests = controller.guests.reduce(function(sum, guest){
@@ -72,7 +74,7 @@ function GuestController(GuestFactory, $stateParams, $state) {
           return controller.bothEventGuestsTotal;
         });
 
-
+        //END OF STAT BOXES
 
         createPagesArray(controller.guests);
         console.log('Got guests', controller.guests);
