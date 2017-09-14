@@ -1,25 +1,8 @@
 /*FONT STYLE FOR THE WHOLE APP*/
 @import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
 
-*{
-
-  font-family: 'Open Sans', sans-serif;
-}
-
-/*div {
-  text-align: center;
-}*/
-
-/*p {
-text-align: center;
-}*/
-
-h1{
-  text-align: center;
-}
-
-h2{
-  text-align: center;
+.section-container{
+  margin-top: 5%;
 }
 
 /*lOGIN FORM*/
@@ -29,15 +12,8 @@ h2{
   padding: 50px 50px;
 }
 
-.email {
-  text-align: center;
-  margin-bottom: 10px;
-}
 
-.password {
-  text-align: center;
-  margin: 20px;
-}
+
 
 /*input[type=text]{
   text-align: center;
@@ -52,8 +28,6 @@ h2{
 }*/
 
 input[type=password]{
-  text-align: center;
-  background-color: #ECF0F1;
   border: 2px solid transparent;
   border-radius: 3px;
   font-size: 16px;
@@ -64,12 +38,10 @@ input[type=password]{
 }
 
 input[type=text]:focus{
-  border: 2px solid orange;
   box-shadow: none;
   }
 
 input[type=password]:focus{
-  border: 2px solid orange;
   box-shadow: none;
  }
 
@@ -81,45 +53,8 @@ input[type=password]:focus::-webkit-input-placeholder {
   color:transparent;
   }
 
-.signinbtn{
-  border: 2px solid transparent;
-   background: orange;
-   color: #ffffff;
-   font-size: 16px;
-   line-height: 25px;
-   padding: 10px 0;
-   text-decoration: none;
-   text-shadow: none;
-   border-radius: 3px;
-   box-shadow: none;
-   transition: 0.25s;
-   display: block;
-   width: 250px;
-   margin: 20px auto;
-}
-
-.signinbtn:hover{
-  background-color: darkorange;
-}
-
 /*NAVIGATION BAR*/
-.nav{
-  border: 2px solid gold;
-  background-color: gold;
-  padding: 20px;
-}
 
-.nav a{
-  text-decoration: none;
-  color: white;
-  padding: 30px;
-}
-
-.nav a:hover{
-  background-color: white;
-  color: gold;
-  border: 2px solid white;
-}
 
 /*RSVP*/
 .guestinput{
@@ -171,13 +106,7 @@ display: list-item;
    margin: 20px auto;
 }
 
-.submitbtn:hover{
-  background-color: darkorange;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-}
+
 
 .rsvp-container {
   padding: 0 !important;

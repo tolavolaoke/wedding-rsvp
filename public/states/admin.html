@@ -1,5 +1,3 @@
-<div ui-view="navbar"></div>
-
 <!-- <div ng-init="guests.getSingleUser()"> -->
 <div ng-controller = "GuestController as guest" ng-init="guest.getAll()">
 
@@ -27,11 +25,10 @@
             <span class="glyphicon glyphicon-user"></span>
          </button>
 
-           <button type="button"
-                   class="btn btn-default"
-                   ng-click="guest.filterBy('Both')">Both
-             <span class="badge">{{guest.bothEventGuestsTotal}}</span>
-           </button>
+         <button type="button"
+                 class="btn btn-default">Registered
+           <span class="badge">{{guest.registeredGuests}}</span>
+         </button>
 
             <button type="button"
                     class="btn btn-default"
@@ -48,18 +45,8 @@
             </button>
 
             <button type="button"
-                    class="btn btn-default">Registered
-              <span class="badge">{{guest.countTotalGuests}}</span>
-            </button>
-
-            <button type="button"
-                    class="btn btn-default">+ Guests
-              <span class="badge">{{guest.totalExtraGuests}} </span>
-            </button>
-
-            <button type="button"
-                    class="btn btn-default">Total
-              <span class="badge">{{guest.countTotalGuests + guest.totalExtraGuests}}</span>
+                    class="btn btn-primary">Total
+              <span class="badge">{{guest.totalGuests}}</span>
             </button>
 
 </div>

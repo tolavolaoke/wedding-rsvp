@@ -27,51 +27,40 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.lower = (page - 1) * 10;
   };
 
+  function categoriseGuests(){
+    controller.guests.forEach(function(guest) {
+      controller.eventOptions.forEach(function(event) {
+        if(guest.attendingEvents === event) {
+          console.log(event);
+          controller.allGuests[event].push(guest);
+        }
+      });
+    });
+  }
+
+  function sumEventGuests(event) {
+    let total = controller.allGuests[event].reduce(function(sum, guest){
+      return sum += guest.extraGuests;
+    }, 0);
+    controller.allGuests['Both'].forEach(function(guest) {
+      total += guest.extraGuests;
+    });
+    total += controller.allGuests['Both'].length;
+    return total;
+  }
 
   controller.getAll = function() {
     GuestFactory.getAll($stateParams).then(
       function success (response) {
         controller.guests = response.data;
+        controller.registeredGuests = controller.guests.length;
 
-        controller.countTotalGuests = controller.guests.length;
+        categoriseGuests();
+        console.log(controller.allGuests, 'yoooooo');
+        controller.whiteWeddingGuestsTotal = sumEventGuests('White Wedding');
+        controller.traditionalGuestsTotal = sumEventGuests('Traditional Wedding');
 
-        controller.totalExtraGuests = controller.guests.reduce(function(sum, guest){
-          return sum += guest.extraGuests;
-        }, 0);
-
-        controller.tradtionalEventGuests = controller.guests.forEach(function(guest){
-          if(guest.attendingEvents === controller.eventOptions[0]){
-            controller.traditionalGuests.push(guest);
-          }
-          var total = controller.traditionalGuests.reduce(function(sum, guest){
-            return sum += guest.extraGuests;
-          }, 0);
-          controller.traditionalGuestsTotal = total + controller.traditionalGuests.length;
-          return controller.traditionalGuestsTotal;
-        });
-
-        controller.whiteWeddingEventGuests = controller.guests.forEach(function(guest){
-          if(guest.attendingEvents === controller.eventOptions[1]){
-            controller.whiteWeddingGuests.push(guest);
-          }
-          var total = controller.whiteWeddingGuests.reduce(function(sum, guest){
-            return sum += guest.extraGuests;
-          }, 0);
-          controller.whiteWeddingGuestsTotal = total + controller.whiteWeddingGuests.length;
-          return controller.whiteWeddingGuestsTotal;
-        });
-
-        controller.bothEvent = controller.guests.forEach(function(guest){
-          if(guest.attendingEvents === controller.eventOptions[2]){
-            controller.bothEventGuests.push(guest);
-          }
-          var total = controller.bothEventGuests.reduce(function(sum, guest){
-            return sum += guest.extraGuests;
-          }, 0);
-          controller.bothEventGuestsTotal = total + controller.bothEventGuests.length;
-          return controller.bothEventGuestsTotal;
-        });
-
+        controller.totalGuests = controller.whiteWeddingGuestsTotal + controller.traditionalGuestsTotal;
 
 
         createPagesArray(controller.guests);
@@ -193,9 +182,16 @@ function GuestController(GuestFactory, $stateParams, $state) {
     controller.lower = 0;
     controller.upper = 10;
     controller.isEditDisabled = false;
-    controller.traditionalGuests = [];
-    controller.whiteWeddingGuests = [];
-    controller.bothEventGuests = [];
+    controller.allGuests = {
+      'Traditional Wedding': [],
+      'White Wedding': [],
+      'Both': []
+    };
+
+    console.log('paginator', Paginator);
+    // controller.traditionalGuests = [];
+    // controller.whiteWeddingGuests = [];
+    // controller.bothEventGuests = [];
   }
   init();
 }

@@ -4,15 +4,13 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       views: {
-        '': { templateUrl: '../states/login.html' },
-        'navbar@login': { templateUrl: '../states/partials/navbar.html' }
+        '': { templateUrl: '../states/login.html' }
       }
     })
     .state('admin', {
       url: '/admin',
       views: {
         '': { templateUrl: '../states/admin.html' },
-        'navbar@admin': { templateUrl: '../states/partials/navbar.html' },
         'addGuest@admin': { templateUrl: '../states/rsvp.html' },
         'upload@admin': { templateUrl: '../states/partials/upload.html' }
       },
@@ -32,8 +30,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('welcome', {
       url: '/welcome',
       views: {
-        '': { templateUrl: '../states/welcome.html' },
-        'navbar@welcome': { templateUrl: '../states/partials/navbar.html' }
+        '': { templateUrl: '../states/welcome.html' }
       },
       resolve: {
         currentAuth: [
@@ -44,26 +41,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('our-story', {
-      url: '/our-story',
-      views: {
-        '': { templateUrl: '../states/our-story.html' },
-        'navbar@our-story': { templateUrl: '../states/partials/navbar.html' }
-      },
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
-    })
+
     .state('gallery', {
       url: '/gallery',
       views: {
-        '': { templateUrl: '../states/gallery.html' },
-        'navbar@gallery': { templateUrl: '../states/partials/navbar.html' }
+        '': { templateUrl: '../states/gallery.html' }
       },
       resolve: {
         currentAuth: [
@@ -77,8 +59,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('guestbook', {
       url: '/guestbook',
       views: {
-        '': { templateUrl: '../states/guestbook.html' },
-        'navbar@guestbook': { templateUrl: '../states/partials/navbar.html' }
+        '': { templateUrl: '../states/guestbook.html' }
       },
       resolve: {
         currentAuth: [
@@ -92,8 +73,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('wedding-details', {
       url: '/wedding-details',
       views: {
-        '': { templateUrl: '../states/wedding-details.html' },
-        'navbar@wedding-details': { templateUrl: '../states/partials/navbar.html' }
+        '': { templateUrl: '../states/wedding-details.html' }
       },
       resolve: {
         currentAuth: [
@@ -109,21 +89,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: '../states/rsvp.html' },
         'navbar@rsvp': { templateUrl: '../states/partials/navbar.html' }
-      },
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
-    })
-    .state('contact-us', {
-      url: '/contact-us',
-      views: {
-        '': { templateUrl: '../states/contact-us.html' },
-        'navbar@contact-us': { templateUrl: '../states/partials/navbar.html' }
       },
       resolve: {
         currentAuth: [
