@@ -3,67 +3,92 @@
 
   <div class="container">
 
-<h2 class="guestbook-title">Admin</h2>
+    <div class="row">
 
-    <div class="row searchbar-div">
-      <div class="col-xs-3 searchbar-div-child ">
+<!-- SEARCHBOX AND FILTER ROW -->
+      <div class="input-group col-md-4">
         <input type="text"
-               class="form-control searchbar"
+               class="form-control names"
                ng-model="searchBox.firstName"
-               placeholder="Search Guest"/>
-</div>
-               <button class="btn btn-default search-icon">
-                  <span class="glyphicon glyphicon-search"></span>
-            </button>
+               placeholder="Search Guest"
+               aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2">
+                <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+      </div>
 
-
-          <button
-            type="button"
-            class="btn btn-success"
-            ng-click="isAddGuestOpen = !isAddGuestOpen" ng-hide="isAddGuestOpen">
-                      <i class="fa fa-plus" aria-hidden="true"></i>
-            <span class="glyphicon glyphicon-user"></span>
-         </button>
 
          <button type="button"
-                 class="btn btn-default">Registered
-           <span class="badge">{{guest.registeredGuests}}</span>
+                 class="btn btn-secondary">Registered
+           <span class="badge badge-default">{{guest.registeredGuests}}</span>
          </button>
 
             <button type="button"
-                    class="btn btn-default"
+                    class="btn btn-secondary"
                     ng-model="guest.eventFilter"
-                    ng-click="guest.filterBy('White Wedding')">White
-              <span class="badge">{{guest.whiteWeddingGuestsTotal}}</span>
+                    ng-click="guest.filterBy('White Wedding')">
+                    <i class="fa fa-filter" aria-hidden="true"></i>White
+              <span class="badge badge-default">{{guest.whiteWeddingGuestsTotal}}</span>
             </button>
 
             <button type="button"
-                    class="btn btn-default"
+                    class="btn btn-secondary"
                     ng-model="guest.eventFilter"
-                    ng-click="guest.filterBy('Traditional Wedding')">Traditional
-              <span class="badge">{{guest.traditionalGuestsTotal}}</span>
+                    ng-click="guest.filterBy('Traditional Wedding')">
+                    <i class="fa fa-filter" aria-hidden="true"></i>Traditional
+              <span class="badge badge-default">{{guest.traditionalGuestsTotal}}</span>
             </button>
 
             <button type="button"
-                    class="btn btn-primary">Total
-              <span class="badge">{{guest.totalGuests}}</span>
+                    class="btn btn-secondary">Total
+              <span class="badge badge-default">{{guest.totalGuests}}</span>
             </button>
 
+<!-- Add Guest Form -->
+
+            <button
+              type="button"
+              class="btn btn-secondary add-guest"
+              ng-click="isAddGuestOpen = !isAddGuestOpen">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              ng-click="isUploadPhotoOpen = !isUploadPhotoOpen">
+                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+            </button>
+
+
+      <!-- <button type="button"
+              class="close"
+              aria-label="Close"
+              ng-show="isAddGuestOpen"
+              ng-click="isAddGuestOpen = false">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+
+        <div ui-view="addGuest"
+             ng-show="isAddGuestOpen"
+             class="addGuest">
+        </div>
+
+        <!-- <button type="button"
+                class="close"
+                aria-label="Close"
+                ng-show="isUploadPhotoOpen"
+                ng-click="isUploadPhotoOpen = false">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+
+    <div ui-view="upload"
+         ng-show="isUploadPhotoOpen"
+         class="modalForm center-div">
+    </div>
 </div>
 
-
-      <i class="fa fa-window-close"
-         ng-show="isAddGuestOpen"
-         ng-click="isAddGuestOpen = false" >
-     </i>
-
-    <div ui-view="addGuest"
-         ng-show="isAddGuestOpen"
-         class="addGuest">
-    </div>
-
-
-
+<!-- GUEST TABLE -->
       <table class="table table hover">
         <thead class="tableHead">
           <tr>
@@ -85,7 +110,7 @@
   <tr ng-repeat="person in guest.guests | filter:searchBox | filter:guest.eventFilter | orderBy: guest.headerSort track by $index"
       ng-if="$index >= guest.lower && $index < guest.upper">
 
-      <td>{{ $index + 1 }}  </td>
+      <td>{{ $index + 1 }}</td>
 
       <td ng-hide="editMode" class="names" >{{ person.firstName}} {{ person.lastName}}</td>
         <td ng-show="editMode">
@@ -102,11 +127,13 @@
 
         <td>
           <a ng-href="mailto:{{person.email}}" target="_top">
-            <span class="glyphicon glyphicon-envelope"></span>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
           </a>
-            <span class="glyphicon glyphicon-phone" ng-click="isPhoneNumberShowing = !isPhoneNumberShowing">
-              <p ng-show="isPhoneNumberShowing" class="admin-phonenumber">{{person.number}}</p>
-            </span>
+          <i class="fa fa-phone"
+             aria-hidden="true"
+             ng-click="isPhoneNumberShowing = !isPhoneNumberShowing">
+             <p ng-show="isPhoneNumberShowing" class="admin-phonenumber">{{person.number}}</p>
+          </i>
         </td>
 
       <td ng-hide="editMode" class="admin-attending-events">{{ person.attendingEvents}}</td>
@@ -136,11 +163,11 @@
         <td>
           <button
             type="submit"
-            class="btn btn-default"
+            class="btn btn-secondary"
             ng-hide="editMode"
             ng-click="editMode = true; guest.editGuest(person); guest.disableEdit()"
             ng-disabled="guest.isEditDisabled">
-          <span class="glyphicon glyphicon-pencil"></span>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
 
           <button
@@ -172,34 +199,39 @@
   </tbody>
   </table>
 
-          <div ng-show="guest.modalShown" class="guestbookForm">
-                    <p>Are you sure you want to delete {{guest.deletingPerson.firstName}} {{guest.deletingPerson.lastName}}?</p>
-                        <button
-                          class="btn btn-default delete-person-button"
-                          ng-click = "guest.deleteGuest(guest.deletingPerson._id)">Delete
-                        </button>
-                        <button
-                          class="btn btn-danger delete-person-button"
-                          ng-click= "guest.modalShown = false">Cancel
-                      </button>
-            </div>
+<!-- DELETE GUEST MODAL -->
+    <div ng-show="guest.modalShown" class="center-div modalForm">
+              <p>Are you sure you want to delete {{guest.deletingPerson.firstName}} {{guest.deletingPerson.lastName}}?</p>
+                  <button
+                    class="btn btn-default delete-person-button"
+                    ng-click = "guest.deleteGuest(guest.deletingPerson._id)">Delete
+                  </button>
+                  <button
+                    class="btn btn-danger delete-person-button"
+                    ng-click= "guest.modalShown = false">Cancel
+                </button>
+    </div>
 
-    <div class="col-md-offset-5">
+
+<!-- PAGINATION  -->
+
+  <div class="row justify-content-center">
+    <div class="btn-toolbar"
+        ng-if="guest.showPaginator"
+        role="toolbar"
+        aria-label="Toolbar with button groups">
       <div
         ng-repeat="page in guest.pageNumbers"
         class="pagination-div">
-
-            <button
-              class="pagination"
-              ng-click="guest.changePage(page)"
-              ng-disabled="guest.upper === page * 10"
-              style="width: 50px">{{ page }}
-            </button>
-
+          <button type="button"
+                  class="btn btn-secondary"
+                  ng-click="guest.changePage(page)"
+                  ng-disabled="guest.upper === page * 10"
+                  style="width: 50px">{{ page }}
+          </button>
       </div>
     </div>
+   </div>
 
+    </div>
  </div>
-</div>
-
-<div ui-view="upload"></div>

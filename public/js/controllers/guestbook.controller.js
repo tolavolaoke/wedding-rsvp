@@ -26,7 +26,7 @@ function GuestBookController(GuestBookFactory, $stateParams, $state) {
   };
 
   controller.openGuestbookForm = function() {
-    controller.guestbookForm = !controller.guestbookForm;
+    controller.modalForm = !controller.modalForm;
   };
   controller.confirmGuestbookMessage = function() {
     controller.guestbookMessageOpen = !controller.guestbookMessageOpen ;

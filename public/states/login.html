@@ -2,8 +2,6 @@
 
 <div ng-if="auth.user" ui-view="navbar"></div>
 
-<h2>Sign in</h2>
-
 <section class="login" ng-if="!auth.user">
   <div class="email">
     <input type="text" placeholder="email" ng-model="auth.email">
@@ -21,5 +19,9 @@
 </section>
 
 <section ng-if="auth.user">
-  <p>You are already logged in...</p>
+  <div class="container welcome-container col-md-5">
+    <div class="row justify-content-center">
+      <img class="couplesName" src="../images/couples-name.png" alt="">
+    </div>
+  </div>
 </section>

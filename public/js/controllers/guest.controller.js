@@ -56,7 +56,6 @@ function GuestController(GuestFactory, $stateParams, $state) {
         controller.registeredGuests = controller.guests.length;
 
         categoriseGuests();
-        console.log(controller.allGuests, 'yoooooo');
         controller.whiteWeddingGuestsTotal = sumEventGuests('White Wedding');
         controller.traditionalGuestsTotal = sumEventGuests('Traditional Wedding');
 
@@ -133,8 +132,10 @@ function GuestController(GuestFactory, $stateParams, $state) {
 
   controller.filterBy = function(eventFilter) {
     if(controller.eventFilter === eventFilter) {
+      controller.showPaginator = true;
       controller.eventFilter = '';
     } else {
+      controller.showPaginator = false;
       controller.eventFilter = eventFilter;
     }
   };
@@ -187,11 +188,8 @@ function GuestController(GuestFactory, $stateParams, $state) {
       'White Wedding': [],
       'Both': []
     };
+    controller.showPaginator = true;
 
-    console.log('paginator', Paginator);
-    // controller.traditionalGuests = [];
-    // controller.whiteWeddingGuests = [];
-    // controller.bothEventGuests = [];
   }
   init();
 }

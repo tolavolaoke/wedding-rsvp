@@ -11,7 +11,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: '/admin',
       views: {
         '': { templateUrl: '../states/admin.html' },
-        'addGuest@admin': { templateUrl: '../states/rsvp.html' },
+        'addGuest@admin': { templateUrl: '../states/partials/rsvp.html' },
         'upload@admin': { templateUrl: '../states/partials/upload.html' }
       },
       resolve: {
