@@ -68,18 +68,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           }
         ]
       }
-    })
-    .state('contactus', {
-      url: '/contactus',
-      templateUrl: '../states/contactus.html',
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
     });
 
   $urlRouterProvider.otherwise('/login')
