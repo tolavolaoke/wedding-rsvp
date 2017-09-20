@@ -3,7 +3,26 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
-      templateUrl: '../states/login.html'
+      views: {
+        '': { templateUrl: '../states/login.html' },
+        'navbar@login': { templateUrl: '../states/partials/navbar.html' }
+      }
+    })
+    .state('admin', {
+      url: '/admin',
+      views: {
+        '': { templateUrl: '../states/admin.html' },
+        'navbar@admin': { templateUrl: '../states/partials/navbar.html' },
+        'addGuest@admin': { templateUrl: '../states/rsvp.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
     })
     .state('auth-required', {
       url: '/authrequired',
@@ -11,7 +30,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('welcome', {
       url: '/welcome',
-      templateUrl: '../states/welcome.html',
+      views: {
+        '': { templateUrl: '../states/welcome.html' },
+        'navbar@welcome': { templateUrl: '../states/partials/navbar.html' }
+      },
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -21,9 +43,12 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('ourstory', {
-      url: '/ourstory',
-      templateUrl: '../states/ourstory.html',
+    .state('our-story', {
+      url: '/our-story',
+      views: {
+        '': { templateUrl: '../states/our-story.html' },
+        'navbar@our-story': { templateUrl: '../states/partials/navbar.html' }
+      },
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -33,9 +58,12 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('photos', {
-      url: '/photos',
-      templateUrl: '../states/photos.html',
+    .state('gallery', {
+      url: '/gallery',
+      views: {
+        '': { templateUrl: '../states/gallery.html' },
+        'navbar@gallery': { templateUrl: '../states/partials/navbar.html' }
+      },
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -45,9 +73,27 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         ]
       }
     })
-    .state('weddingdetails', {
-      url: '/weddingdetails',
-      templateUrl: '../states/weddingdetails.html',
+    .state('guestbook', {
+      url: '/guestbook',
+      views: {
+        '': { templateUrl: '../states/guestbook.html' },
+        'navbar@guestbook': { templateUrl: '../states/partials/navbar.html' }
+      },
+      resolve: {
+        currentAuth: [
+          'AuthFactory',
+          (AuthFactory) => {
+            return AuthFactory.$requireSignIn();
+          }
+        ]
+      }
+    })
+    .state('wedding-details', {
+      url: '/wedding-details',
+      views: {
+        '': { templateUrl: '../states/wedding-details.html' },
+        'navbar@wedding-details': { templateUrl: '../states/partials/navbar.html' }
+      },
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -59,7 +105,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('rsvp', {
       url: '/rsvp',
-      templateUrl: '../states/rsvp.html',
+      views: {
+        '': { templateUrl: '../states/rsvp.html' },
+        'navbar@rsvp': { templateUrl: '../states/partials/navbar.html' }
+      },
       resolve: {
         currentAuth: [
           'AuthFactory',
@@ -70,11 +119,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise('/login')
+  $urlRouterProvider.otherwise('/login');
 
 }
-
-MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 
 function AuthCatcher($rootScope, $state) {
   $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
@@ -83,6 +130,9 @@ function AuthCatcher($rootScope, $state) {
     }
   });
 }
+
+
+MainRouter.inject = ['$stateProvider', '$urlRouterProvider'];
 AuthCatcher.$inject = ['$rootScope', '$state'];
 
 angular

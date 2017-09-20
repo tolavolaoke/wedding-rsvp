@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 
-<nav>
-  <a ui-sref="ourstory">Our Story</a>
-  <a ui-sref="photos">Photos</a>
-  <a ui-sref="weddingdetails">Wedding Details</a>
-  <a ui-sref="rsvp">RSVP</a>
-  <a ui-sref="contactus">Contact us</a>
-  <a href="#" ng-click="auth.signOut()">Sign out</a>
-</nav>
+<section class="nav">
+  <div ui-view="navbar"></div>
+</section>
+
 
 <section>
   <div ng-if="auth.user">
     <p><strong>
       Welcome {{ auth.user.email }}!
-    </strong></p>
+    </strong> </p>
+
   </div>
 </section>

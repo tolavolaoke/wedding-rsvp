@@ -1,22 +1,6 @@
 function AuthController($state, AuthFactory) {
   var controller = this;
 
-  // controller.createUser = () => {
-  //   controller.error = null;
-  //   AuthFactory.$createUserWithEmailAndPassword(controller.email, controller.password).then(
-  //     (firebaseUser) => {
-  //       console.log('firebaseUser:', firebaseUser);
-  //       resetCredentials();
-  //       $state.go('secret');
-  //     },
-  //     (error) => {
-  //       controller.error = error;
-  //       console.warn('could not create user with email and password:', error);
-  //       resetCredentials();
-  //     }
-  //   );
-  // };
-
   controller.signIn = () => {
     controller.error = null;
     AuthFactory.$signInWithEmailAndPassword(controller.email, controller.password).then(
