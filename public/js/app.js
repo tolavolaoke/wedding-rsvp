@@ -117,21 +117,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           }
         ]
       }
-    })
-    .state('contact-us', {
-      url: '/contact-us',
-      views: {
-        '': { templateUrl: '../states/contact-us.html' },
-        'navbar@contact-us': { templateUrl: '../states/partials/navbar.html' }
-      },
-      resolve: {
-        currentAuth: [
-          'AuthFactory',
-          (AuthFactory) => {
-            return AuthFactory.$requireSignIn();
-          }
-        ]
-      }
     });
 
   $urlRouterProvider.otherwise('/login');
