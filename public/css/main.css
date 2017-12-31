@@ -22,7 +22,7 @@ h2{
   text-align: center;
 }
 
-/*lOGIN FORM*/
+/*lOGIN FORM--------------------------------*/
 .login{
   border: 3px solid #f1f1f1;
   margin: 50px 300px;
@@ -39,7 +39,7 @@ h2{
   margin: 20px;
 }
 
-/*input[type=text]{
+input[type=text]{
   text-align: center;
   background-color: #ECF0F1;
   border: 2px solid transparent;
@@ -49,7 +49,7 @@ h2{
   padding: 10px 0;
   width: 250px;
   transition: border .5s;
-}*/
+}
 
 input[type=password]{
   text-align: center;
@@ -192,7 +192,6 @@ text-align: center;
 color:black;
 height: 5vh;
 opacity: 0.8;
-border: rgba(202, 232, 220, 1.0) solid 5px;
 }
 
 .add-guest-submit {
